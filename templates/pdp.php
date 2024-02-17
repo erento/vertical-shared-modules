@@ -310,7 +310,7 @@
                             ?>
                             <meta itemprop="description" content="<?=strip_tags($description)?>" />
                             <?php
-                                get_template_part('components/read-more-text-container', null, array(
+                                get_shared_template_part('components/read-more-text-container', null, array(
                                     'component_class'   => 'description',
                                     'text'              => $description,
                                 ));
@@ -321,7 +321,7 @@
                             <hr>
                             <h2><?=_t('Hiring terms')?></h2>
                             <?php
-                                get_template_part('components/read-more-text-container', null, array(
+                                get_shared_template_part('components/read-more-text-container', null, array(
                                     'component_class'   => 'hiring-terms',
                                     'text'              => $hiring_terms,
                                 ));
@@ -386,7 +386,7 @@
                         </div>
                         <div class="title hide-after-enq-submit"><?=_t('Enquire on this car')?></div>
                         <?php
-                            get_template_part('components/enquiry-box', null, array(
+                            get_shared_template_part('components/enquiry-box', null, array(
                                 'item_name'     => $name,
                                 'price'         => $price,
                                 'location'      => $locationAddress,
@@ -404,7 +404,7 @@
                             if (property_exists($seller_info, 'contact')) {
                                 if (property_exists($seller_info->contact, 'phoneNumber') || property_exists($seller_info->contact, 'mobileNumber')) {
                                     echo '<div class="seller-info-wrapper">';
-                                        get_template_part('components/seller-info-box', null, array(
+                                        get_shared_template_part('components/seller-info-box', null, array(
                                             'seller_info' => $seller_info,
                                         ));
                                     echo '</div>';
@@ -442,7 +442,7 @@
                                 <h2><?=$locations_count && $locations_count > 1 ? _t('Article locations') : _t('Article location')?></h2>
                                 <?php
                                     if ($locations && count($locations) > 1) {
-                                        get_template_part('components/read-more-text-container', null, array(
+                                        get_shared_template_part('components/read-more-text-container', null, array(
                                             'component_class'   => 'locations',
                                             'btn_text'          => _t('Show all...', true),
                                             'text'              => getAllLocations($locations),
