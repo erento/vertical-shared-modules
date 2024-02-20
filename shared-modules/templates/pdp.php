@@ -204,7 +204,7 @@
                     <div class="links-row">
                         <?php
                             if (key_exists('link', $last_link)) {
-                                echo '<div class="more-results"><a href="' . $last_link['link'] . '">< ' . _t('More vehicles', true) . '</a></div>';
+                                echo '<div class="more-results"><a href="' . $last_link['link'] . '">< ' . _t('MORE_ITEMS', true) . '</a></div>';
                             }
                         ?>
                         <div class="article-number">
