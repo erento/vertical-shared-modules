@@ -179,7 +179,7 @@
         //////////////////////////////
 
         // Enque main styles - styles.css
-        wp_enqueue_style( 'styles_css', get_template_directory_uri() . '/css/styles.css', array(), date("ymd-Gis", filemtime( plugin_dir_path( __FILE__ ) . 'css/styles.css' )), 'all' );
+        wp_enqueue_style( 'styles_css', get_template_directory_uri() . '/css/styles.min.css', array(), date("ymd-Gis", filemtime( plugin_dir_path( __FILE__ ) . 'css/styles.min.css' )), 'all' );
     }
     add_action( 'wp_enqueue_scripts', 'my_enqueue_scripts_styles' );
 

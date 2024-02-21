@@ -111,7 +111,8 @@
         'Explore other cities' => 'Weitere Städte entdecken',
         'Similar items nearby' => 'Ähnliche Artikel in der Nähe',
         'EMAIL_SELLER_INTRO_END' => 'Hier ist Ihre erste Anfrage!',
-        'BOT_SPAM_ERROR' => 'Etwas ist schief gelaufen.'
+        'BOT_SPAM_ERROR' => 'Etwas ist schief gelaufen.',
+        'TOP_POSITION_BADGE' => 'Top'
     ];
 
     $allTranslations = array_merge($sharedTranslations, $spinoffTranslations);
