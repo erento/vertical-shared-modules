@@ -1,0 +1,63 @@
+flickity-gallery-component {
+    width: 100%;
+    height: 100%;
+    display: block;
+    overflow: hidden;
+
+    .no-photo-link {
+        width: 100%;
+        height: 100%;
+
+        .no-photo-slide {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: fade(@dark, 10%);
+            color: #777;
+            font-weight: 600;
+        }
+    }
+
+    .slide {
+        width: 100%;
+        height: 100%;
+        position: relative;
+
+        &::after {
+            .fullAbsolute;
+
+            content: "";
+            background: rgba(0,0,0,0.08);
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        &.view-item-slide {
+            background: @dark;
+
+            img {
+                opacity: 0.15;
+            }
+
+            .btn {
+                .absoluteCenter;
+
+                z-index: 20;
+
+                .hoverStyles({
+                    background: @white !important;
+                    opacity: 0.8;
+                    color: @dark !important;
+                });
+            }
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+}

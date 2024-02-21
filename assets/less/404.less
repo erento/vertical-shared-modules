@@ -1,0 +1,54 @@
+//////////////////////////////////////////
+//////////      404 Styles      //////////
+//////////////////////////////////////////
+
+.four-o-four{
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url('../assets/404.jpg');
+  background-position: center top;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  &::before{
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: @dark;
+    opacity: 0.5;
+    z-index: 1;
+  }
+
+  .text-wrapper{
+    padding: 20px;
+    text-align: center;
+    color: #fff;
+    position: relative;
+    z-index: 10;
+
+    h1{
+      font-size: 40px;
+    }
+
+    h2{
+      .regularFont;
+      max-width: 600px;
+      margin: 0 auto;
+      padding-top: 10px;
+      font-size: 16px;
+      font-weight: normal;
+    }
+
+    .btn{
+      height: 60px;
+      margin-top: 30px;
+    }
+
+  }
+}

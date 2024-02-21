@@ -1,0 +1,133 @@
+
+.ui-datepicker {
+    .userNoSelect;
+
+    width: 320px;
+    border-radius: 6px;
+    box-shadow: 0 0 50px 0 rgba(0,0,0,0.2);
+    background: @white;
+    overflow: hidden;
+    padding: 15px 20px 15px;
+    margin-top: 5px;
+
+    &[style] {
+        z-index: 250 !important;
+    }
+
+    @media @XSSM {
+        display: none;
+    }
+
+    &:empty {
+        display: none;
+    }
+
+    .ui-datepicker-header {
+        width: 100%;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        text-align: center;
+        font-weight: bold;
+
+        .ui-datepicker-prev,
+        .ui-datepicker-next {
+
+            width: 28px;
+            height: 28px;
+            display: block;
+            padding: 6px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 50%;
+
+            &:hover:not(.ui-state-disabled) {
+                cursor: pointer;
+                background: fade(@dark, 8%);
+            }
+
+            &.ui-state-disabled {
+                opacity: 0.3;
+            }
+
+            span {
+                .selectDarkArrow;
+
+                width: 100%;
+                height: 100%;
+                display: block;
+                font-size: 0;
+                transform: rotate(90deg);
+            }
+        }
+
+        .ui-datepicker-next {
+            left: auto;
+            right: 0;
+
+            span {
+                transform: rotate(-90deg);
+            }
+        }
+    }
+
+    .ui-datepicker-calendar {
+        width: 100%;
+        text-align: center;
+        margin-top: 5px;
+
+        tr {
+            th {
+                font-size: 14px;
+                font-weight: normal;
+                color: @grey;
+            }
+
+            td {
+                padding-bottom: 2px;
+                font-size: 14px;
+
+                &.ui-state-disabled {
+                    span {
+                        opacity: 0.3;
+                    }
+                }
+
+                &.pickup-highlight {
+                    a:not(.ui-state-active) {
+                        border: 1px solid @dark;
+                    }
+                }
+            }
+        }
+
+        a, span {
+            width: 35px;
+            height: 35px;
+            display: block;
+            margin: 0 auto;
+            line-height: 35px;
+        }
+
+        a {
+            color: #444;
+            text-decoration: none;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+
+            &:hover {
+                background: fade(@dark, 10%);
+            }
+
+            &.ui-state-active {
+                background: @primaryColor;
+                color: @white;
+                font-weight: bold;
+            }
+        }
+    }
+}

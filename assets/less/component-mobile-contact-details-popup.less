@@ -1,0 +1,67 @@
+mobile-contact-details-popup {
+    width: 100%;
+    height: 100%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    .modal-overlay {
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.3);
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .mobile-contact-details-popup {
+        width: calc(100% - 20px);
+        max-width: 450px;
+        padding: 40px 20px 20px;
+        background: @white;
+        position: relative;
+        border-radius: @borderRadiusBtn;
+
+        .close {
+            width: 15px;
+            height: 15px;
+            padding: 10px;
+            box-sizing: content-box;
+            position: absolute;
+            top: 5px;
+            right: 5px;
+
+            svg {
+                .SVGBase(@grey);
+            }
+        }
+        
+        .title {
+            font-weight: bold;
+        }
+
+        .numbers {
+            padding-top: 20px;
+
+            .btn {
+                margin: 0 15px 15px 0;
+                padding: 0 20px;
+                
+                .icon {
+                    width: 20px;
+                    height: 20px;
+                    margin-right: 8px;
+
+                    svg {
+                        .SVGBase(@white);
+                    }
+                }
+            }
+        }
+
+        .description {
+            font-size: 15px;
+            line-height: 23px;
+        }
+    }
+}

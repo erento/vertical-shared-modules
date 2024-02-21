@@ -1,0 +1,52 @@
+read-more-text-container-component {
+    @paragraphLineHeight: 22px;
+
+    &.expandable {
+        .paragraph {
+            &::after {
+                content: "";
+                width: 100%;
+                height: 80px;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                .verticalGradientBgColor(rgba(255,255,255,0), @white);
+            }
+        }
+    }
+
+    &.expanded {
+        .paragraph {
+            max-height: none !important;
+
+            &::after {
+                display: none;
+            }
+        }
+    }
+
+    .paragraph {
+        max-height: 10 * @paragraphLineHeight;
+        position: relative;
+        overflow: hidden;
+        line-height: @paragraphLineHeight;
+
+        p {
+            margin: @paragraphLineHeight 0 0;
+        }
+    }
+
+    .read-more-btn,
+    .show-less-btn {
+        font-weight: bold;
+        text-decoration: underline;
+        margin-top: 15px;
+        display: none;
+        color: @dark;
+        cursor: pointer;
+    }
+
+    .show-less-btn {
+        display: none;
+    }
+}

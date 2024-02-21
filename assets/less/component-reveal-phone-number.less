@@ -1,0 +1,40 @@
+reveal-phone-number-component {
+    &.revealed {
+        .seller-phone-numbers {
+            display: block;
+        }
+
+        .show-seller-phone-btn {
+            display: none;
+        }
+    }
+
+    .btn.seller-phone-number-btn {
+        border-color: @dark;
+        color: @dark;
+    }
+
+    .icon {
+        width: 20px;
+        height: 20px;
+        margin-right: 12px;
+
+        svg {
+            .SVGBase(@dark);
+        }
+    }
+
+    .seller-phone-numbers {
+        display: none;
+
+        .phone-row {
+            display: flex;
+            align-items: center;
+            padding: 8px 0;
+
+            a {
+                text-decoration: underline;
+            }
+        }
+    }
+}
