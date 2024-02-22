@@ -1,0 +1,138 @@
+listview-item-component {
+    display: block;
+    position: relative;
+    text-align: left;
+    cursor: pointer;
+
+    &::before {
+        transition: box-shadow 0.25s ease;
+    }
+
+    .hoverStyles({
+        z-index: 10;
+
+        &::before {
+            .fullAbsolute;
+
+            content: "";
+            left: 35px;
+            width: calc(100% - 70px);
+            box-shadow: 0px 0px 40px rgba(0,0,0,0.1);
+        }
+
+        .listview-item-wrapper {
+            flickity-gallery-component {
+                .flickity-prev-next-button:not(:disabled) {
+                    display: block;
+                    background: @white;
+
+                    svg{
+                        fill: @dark;
+                        filter: none;
+                    }
+                }
+            }
+        }
+    });
+
+    .listview-item-wrapper {
+        display: flex;
+        align-items: stretch;
+        position: relative;
+        padding: 15px 0;
+        border-bottom: 1px solid fade(@dark, 10%);
+        background: @white;
+
+        @media @xsDevice {
+            flex-direction: column;
+            border-bottom: none;
+        }
+
+        .flickity-gallery-wrapper {
+            width: 360px;
+            height: 240px;
+            flex-shrink: 0;
+            position: relative;
+            overflow: hidden;
+            border-radius: @bigBorderRadius;
+            -webkit-mask-image: -webkit-radial-gradient(white, black); // iOS fix for show border-radius while swipping
+
+            @media @xsDevice {
+                width: 100%;
+                height: 60vw;
+            }
+        }
+
+        .listview-info-link {
+            width: 100%;
+        }
+
+        .info {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            padding: 5px 0 5px 25px;
+
+            @media @xsDevice {
+                padding: 8px 0px 5px;
+            }
+
+            .location-rating-wrapper {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                .seller-rating-badge {
+                    padding-left: 10px;
+                    font-size: 15px;
+
+                    @media @nonXS {
+                        display: none;
+                    }
+                }
+            }
+
+            .title {
+                .textEllipsisDouble;
+                font-size: 17px;
+                line-height: 1.5em;
+                font-weight: 600;
+            }
+
+            .properties {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                padding: 3px 0 8px;
+                margin-left: -5px;
+
+                @media @xsDevice {
+                    padding: 8px 0 12px;
+                }
+
+                .property {
+                    padding: 6px 8px;
+                    margin-left: 5px;
+                    margin-top: 5px;
+                    color: fade(@dark, 40%);
+                    border: 1px solid fade(@dark, 20%);
+                    border-radius: @cardBorderRadius;
+                    font-size: 13px;
+                    font-weight: 600;
+                }
+            }
+
+            .rating-price-wrapper {
+                margin-top: auto;
+
+                .seller-rating-badge {
+                    padding-bottom: 15px;
+
+                    @media @xsDevice {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}

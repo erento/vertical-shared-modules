@@ -1,0 +1,541 @@
+enquiry-box-component {
+    display: block;
+    padding: 12px 20px 0px;
+
+    .enquiry-section {
+
+        &.locations-picker-section {
+            padding-top: 10px;
+
+            @media @XSSM {
+                margin-top: 25px;
+                padding-top: 25px;
+                border-top: 1px solid fade(@dark, 8%);
+            }
+        }
+
+        &.form-section {
+            padding-top: 15px;
+
+            @media @XSSM {
+                margin-top: 25px;
+                padding-top: 25px;
+                border-top: 1px solid fade(@dark, 8%);
+            }
+        }
+    }
+
+    .section-title {
+        font-size: 18px;
+        font-weight: bold;
+        padding-bottom: 20px;
+
+        @media @nonXSSM {
+            display: none;
+        }
+    }
+
+    .date-hour-picker {
+        width: 100%;
+        display: flex;
+        align-items: flex-start;
+        position: relative;
+        padding: 12px 10px 8px;
+        margin-bottom: 0;
+        background: fade(@dark, 5%);
+        border-radius: @cardBorderRadius;
+
+        @media @XSSM {
+            display: block;
+            padding: 0;
+            background: @white;
+        }
+
+        .custom-select-wrapper {
+            width: 100px;
+            position: absolute;
+            top: 30px;
+            left: -5px;
+            z-index: 10;
+            cursor: default;
+            display: none;
+
+            @media @XSSM {
+                display: none;
+            }
+
+            .custom-select {
+                .customScrollBar;
+
+                width: 100%;
+                max-height: 290px;
+                position: relative;
+                background: @white;
+                overflow-y: auto;
+                padding: 10px 10px 5px;
+                border-radius: @cardBorderRadius;
+                box-shadow: 0px 10px 20px rgba(0,0,0,0.2);
+
+                .custom-select-option {
+                    padding: 8px;
+                    font-size: 14px;
+                    border-radius: 4px;
+                    cursor: pointer;
+                    margin-bottom: 5px;
+
+                    .hoverStyles({
+                        background: fade(@dark, 6%);
+                    });
+
+                    &.selected {
+                        font-weight: bold;
+                        color: @primaryColor;
+                    }
+
+                    &.disabled {
+                        opacity: 0.5;
+                        pointer-events: none;
+                        line-height: 1.5em;
+                    }
+                }
+            }
+        }
+
+        .block {
+            width: 50%;
+
+            @media @XSSM {
+                width: 100%;
+
+                &.left {
+                    padding-bottom: 20px;
+                }
+            }
+
+            &.right {
+                text-align: right;
+
+                input {
+                    text-align: right;
+                }
+
+                .labels{
+                    justify-content: flex-end;
+
+                    @media @XSSM {
+                        justify-content: flex-start;
+                    }
+                }
+
+                .custom-select-wrapper {
+                    left: auto;
+                    right: -5px;
+                }
+            }
+
+            .labels {
+                display: flex;
+                align-items: center;
+                padding: 0 5px 5px;
+                font-size: 14px;
+                color: fade(@dark, 40%);
+
+                @media @XSSM {
+                    padding-bottom: 10px;
+                }
+
+                .icon {
+                    width: 16px;
+                    height: 16px;
+                    margin-right: 6px;
+                    transform: translateY(-2px);
+                    display: none;
+
+                    @media @XSSM {
+                        display: block;
+                    }
+
+                    svg {
+                        .SVGBase(fade(@dark, 20%));
+                    }
+                }
+            }
+
+            .date-hour-wrapper {
+                width: 100%;
+
+                @media @XSSM {
+                    height: 50px;
+                    display: flex;
+                    align-items: center;
+                    background: fade(@dark, 5%);
+                    border-radius: @cardBorderRadius;
+                }
+            }
+
+            .dh-item {
+                width: 100%;
+                display: inline-block;
+                cursor: pointer;
+                border-radius: @borderRadiusBtn;
+
+                @media @XSSM {
+                    width: 50% !important;
+                    height: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: 0;
+                    position: relative;
+                    font-weight: bold;
+
+                    &:first-of-type::after {
+                        content: "";
+                        width: 1px;
+                        height: calc(100% - 16px);
+                        border-right: 1px solid fade(@dark, 15%);
+                        position: absolute;
+                        right: 0;
+                        top: 50%;
+                        transform: translateY(-50%);
+                    }
+                }
+
+                &.date {
+                    width: 120px;
+
+                    input {
+                        font-weight: bold;
+                    }
+                }
+
+                &.hour {
+                    width: 60px;
+                    position: relative;
+                }
+
+                .dh-item-value {
+                    width: 100%;
+                    height: auto;
+                    display: inline-block;
+                    position: relative;
+                    font-size: 15px;
+                    letter-spacing: -0.02em;
+                    padding: 0;
+                    margin: 0;
+                    background: transparent;
+                    border: none;
+                    padding: 6px;
+                    cursor: pointer;
+
+                    .hoverStyles({
+                        background: fade(@dark, 7%);
+                    });
+
+                    @media @XSSM {
+                        pointer-events: none;
+                        text-align: center;
+                        font-weight: bold;
+                        z-index: 1;
+                    }
+
+                    &.datepicker-opened {
+                        background: fade(@dark, 7%);
+                    }
+
+                    &.selected {
+                        background: fade(@dark, 7%);
+                    }
+                }
+
+                input[type="date"],
+                input[type="time"] {
+                    width: 100%;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    opacity: 0;
+                    z-index: 10;
+                    visibility: hidden;
+
+                    @media @XSSM {
+                        display: block;
+                        visibility: visible;
+                    }
+                }
+            }
+        }
+
+        .arrow-icon {
+            width: 18px;
+            height: 14px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            @media @XSSM {
+                display: none;
+            }
+
+            svg{
+                .SVGBase(@dark);
+            }
+        }
+
+        .date-hour-row {
+            display: flex;
+            align-items: center;
+            padding: 0 4px;
+
+            .right {
+                margin-left: auto;
+            }
+        }
+    }
+
+    .input-container,
+    .textarea-container,
+    .select-container {
+        width: 100%;
+        display: block;
+        padding-bottom: 10px;
+
+        @media @XSSM {
+            padding-bottom: 20px;
+        }
+
+        label {
+            width: 100%;
+            font-size: 15px;
+            color: @dark;
+            display: none;
+            font-weight: bold;
+
+            @media @XSSM {
+                display: block;
+                padding-bottom: 8px;
+            }
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            height: 50px;
+            border-color: fade(@dark, 10%);
+
+            &.error {
+                border-color: @redColor;
+            }
+        }
+
+        textarea {
+            height: 120px;
+            line-height: 1.3em;
+            min-height: 120px;
+            max-height: 400px;
+            resize: vertical;
+        }
+    }
+
+    .textarea-container {
+        &.hidden {
+            @media @nonXSSM {
+                display: none;
+            }
+        }
+    }
+
+    .select-container {
+        padding-bottom: 0;
+
+        @media @nonXSSM {
+            border: 1px solid fade(@dark, 10%);
+            border-radius: @borderRadiusBtn;
+            padding-left: 10px;
+            padding-top: 12px;
+        }
+
+        .select-title {
+            @media @nonXSSM {
+                padding-left: 5px;
+                color: @grey;
+                font-size: 14px;
+            }
+
+            @media @XSSM {
+                font-size: 18px;
+                font-weight: bold;
+                padding-bottom: 15px;
+            }
+        }
+
+        select {
+            .textEllipsis;
+
+            @media @nonXSSM {
+                height: 40px;
+                padding-left: 5px;
+                border: none;
+
+                &:active, &:focus {
+                    border: none;
+                }
+            }
+        }
+    }
+
+    .open-seller-message {
+        display: flex;
+        align-items: center;
+        text-decoration: underline;
+        font-size: 14px;
+        font-weight: bold;
+        color: fade(@dark, 40%);
+        margin: 5px 0 20px;
+        cursor: pointer;
+
+        @media @XSSM {
+            display: none;
+        }
+
+        .hoverStyles({
+            color: fade(@dark, 80%);
+        });
+
+        .icon {
+            width: 16px;
+            height: 14px;
+            margin-right: 6px;
+
+            svg {
+                .SVGBase(fade(@dark, 30%));
+            }
+        }
+    }
+
+    .send-enquiry-btn {
+        width: 100%;
+        color: @white;
+        
+        @media @XSSM {
+            display: none;
+        }
+
+        &.purple {
+            .diagonalGradientBgColor(#5F3EE2, #E12872);
+            color: @white;
+
+            &:hover {
+                .diagonalGradientBgColor(#5234ca, #bd0d53) !important;
+            } 
+        }
+    }
+
+    .non-binding-info {
+        @media @XSSM {
+            display: none;
+        }
+    }
+
+    .terms-info {
+        width: 100%;
+        padding: 20px 0;
+        font-size: 11px;
+        line-height: 1.5em;
+        text-align: center;
+        color: fade(@dark, 30%);
+
+        a {
+            text-decoration: underline;
+        }
+
+        @media @XSSM {
+            text-align: left;
+            font-size: 13px;
+        }
+    }
+
+    .ss-error {
+        color: @redColor;
+        font-size: 13px;
+        padding-top: 10px;
+        font-weight: bold;
+
+        &:empty {
+            display: none;
+        }
+
+        &.ss-error-general {
+            padding-top: 0;
+            padding-bottom: 15px;
+        }
+    }
+
+    .success-container{
+        display: none;
+        padding: 8px 0 20px;
+
+        .inner-container {
+            width: 100%;
+            background: fade(@green, 10%);
+            padding: 25px 20px;
+            border-radius: @bigBorderRadius;
+
+            .success-title {
+                display: flex;
+                align-items: center;
+                padding-bottom: 20px;
+                font-size: 18px;
+                font-weight: bold;
+                color: @green;
+
+                .icon {
+                    width: 28px;
+                    height: 28px;
+                    border-radius: 50%;
+                    background: fade(@green, 20%);
+                    padding: 6px;
+                    margin-right: 10px;
+                    flex-shrink: 0;
+
+                    svg {
+                        .SVGBase(@green);
+                    }
+                }
+            }
+
+            .description {
+                color: fade(@dark, 50%);
+                font-size: 15px;
+                line-height: 1.3em;
+
+                span {
+                    text-decoration: underline;
+                }
+
+                strong {
+                    display: block;
+                    padding-top: 15px;
+                    color: @dark;
+                }
+            }
+        }
+
+        .btn.explore-more-btn {
+            width: 100%;
+            margin-top: 15px;
+
+            &::after {
+                margin-left: 5px;
+            }
+
+            span {
+                padding-right: 10px;
+                padding-left: 5px;
+            }
+        }
+    }
+}

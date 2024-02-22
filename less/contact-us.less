@@ -1,0 +1,316 @@
+/////////////////////////////////////////////////
+//////////      Contact Us Styles      //////////
+/////////////////////////////////////////////////
+
+.contact-us-hero {
+    width: 100%;
+    height: 700px;
+    position: relative;
+
+    @media @mdDevice {
+        height: 600px;
+    }
+
+    @media @smDevice {
+        height: 400px;
+    }
+
+    @media @xsDevice {
+        height: 100vw;
+    }
+
+    &.black {
+        .hero-image {
+            background-color: black;
+        }
+
+        &::after {
+            .verticalGradientBgColor(rgba(17,17,17,0), rgba(17,17,17,1));
+        }
+    }
+
+    &.purple {
+        &::after {
+            .verticalGradientBgColor(#010E2100, #010E2190);
+        }
+    }
+
+    .hero-image {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        object-fit: cover;
+        background-color: @deepDarkBlue;
+    }
+    
+    &::after {
+        .verticalGradientBgColor(#010E2100, @deepDarkBlue);
+
+        content: "";
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+}
+
+.contact-container {
+    width: 100%;
+    padding: 50px 0 10px;
+    background: @deepDarkBlue;
+    
+    &.dark {
+        background: @dark;
+
+        .contact-content .submit-row .submit-btn {
+            background: @dark;
+
+            &:hover {
+                background: #111;
+            }
+        }
+    }
+
+    .shift {
+        margin-top: -500px;
+        position: relative;
+        z-index: 100;
+
+        @media @mdDevice {
+            margin-top: -400px;
+        }
+
+        @media @smDevice {
+            margin-top: -250px;
+        }
+
+        @media @xsDevice {
+            margin-top: -60vw;
+        }
+    }
+
+    .heading-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding-bottom: 80px;
+
+        @media @XSSM {
+            padding-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 50px;
+            color: #fff;
+
+            @media @xsDevice {
+                font-size: 40px;
+            }
+        }
+    }
+
+    .contact-content {
+        width: 100%;
+        max-width: 750px;
+        margin: 0 auto;
+        padding: 20px 30px 30px;
+        background: @white;
+        border-radius: @bigBorderRadius;
+        box-shadow: 0px 10px 30px rgba(0,0,0,0.15);
+
+        @media @xsDevice {
+            padding: 15px 20px 20px;
+        }
+
+        & > p:first-of-type {
+            margin-top: 0;
+        }
+
+        h2 {
+            .regularFont;
+
+            font-size: 18px;
+            font-weight: bold;
+            padding: 10px 0;
+        }
+
+        p {
+            line-height: 28px;
+        }
+
+        form {
+            display: block;
+            padding-top: 10px;
+            text-align: center;
+
+            @media @xsDevice {
+                padding-top: 10px;
+            }
+
+            &.sent {
+                .wpcf7-response-output {
+                    border-color: @green !important;
+                    color: @green;
+                }
+            }
+        }
+
+        .form-row {
+            display: flex;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            padding-bottom: 20px;
+            text-align: left;
+
+            @media @xsDevice {
+                padding-bottom: 0px;
+            }
+
+            &.textarea-row {
+                padding-bottom: 5px;
+            }
+
+            label {
+                font-size: 14px;
+                color: #ccc;
+                font-weight: normal;
+            }
+
+            input, textarea {
+                .noAppearance;
+                width: 100%;
+                height: 50px;
+                padding: 10px 15px;
+                border: none;
+                font-size: 15px;
+                border: 1px solid #ccc;
+                background: #fff;
+                border-radius: 4px;
+                transition: background 0.25s ease;
+
+                &:focus {
+                    border-color: @dark;
+
+                    &:hover {
+                        background: #fff;
+                    }
+                }
+
+                @media @xsDevice, @smDevice {
+                    font-size: 16px;
+                }
+
+                &.wpcf7-not-valid {
+                    border-color: red;
+                }
+
+                &:hover {
+                    background: #fafafa;
+                }
+
+                &::placeholder {
+                    color: #aaa;
+                }
+            }
+
+            textarea {
+                height: 160px;
+                resize: none;
+            }
+
+            .input-wrapper {
+                width: 50%;
+
+                @media @xsDevice {
+                    width: 100%;
+                    padding-bottom: 15px;
+                }
+
+                &:first-of-type {
+                    @media @nonXS {
+                        padding-right: 20px;
+                    }
+                }
+            }
+
+            .textarea-wrapper {
+                width: 100%;
+            }
+
+            .input-wrapper,
+            .textarea-wrapper {
+                span {
+                    font-size: 13px;
+                    padding-top: 8px;
+                }
+            }
+        }
+
+        .submit-row {
+            display: inline-flex;
+            justify-content: center;
+            margin: 0 auto;
+            margin-top: 20px;
+            position: relative;
+
+            @media @xsDevice {
+                width: 100%;
+                margin-top: 10px;
+            }
+
+            .submit-btn {
+                .userNoSelect;
+
+                width: auto;
+                min-width: 350px;
+                height: 60px;
+                display: inline-block;
+                padding: 0 30px;
+                background: @primaryColor;
+                border: none;
+                font-size: 18px;
+                font-weight: 600;
+                line-height: 60px;
+                color: @white;
+                cursor: pointer;
+                border-radius: @cardBorderRadius;
+
+                @media @xsDevice {
+                    width: 100%;
+                    max-width: 400px;
+                    min-width: 0px;
+                }
+
+                &:hover {
+                    background: darken(@primaryColor, 10%);
+                }
+            }
+
+            .wpcf7-spinner {
+                display: block;
+                position: absolute;
+                top: 50%;
+                right: 20px;
+                transform: translateY(-50%);
+                margin: 0;
+                z-index: 10;
+            }
+        }
+
+        .wpcf7-response-output {
+            margin: 20px 0 0;
+            padding: 15px;
+            border-radius: 6px;
+            border-width: 1px;
+            font-weight: 600;
+            border-color: @grey !important;
+
+            &.wpcf7-validation-errors, &.wpcf7-acceptance-missing {
+                border-color: #ff0000 !important;
+            }
+        }
+    }
+}

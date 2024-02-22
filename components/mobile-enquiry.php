@@ -23,8 +23,8 @@
                 $email_img_src = false;
                 if (sizeof($images) > 0) {
                     $img_src_path = getStaticSrc($images[0]->src);
-                    $img_src = $img_src_path . '?width=100&height=80';
-                    $img_srcset = $img_src_path . '?width=100&height=80 1x, ' . $img_src_path . '?width=100&height=80&dpr=2 2x';
+                    $img_src = $img_src_path . '?width=100&height=80&fit=crop';
+                    $img_srcset = $img_src_path . '?width=100&height=80&fit=crop 1x, ' . $img_src_path . '?width=100&height=80&fit=crop&dpr=2 2x';
                     echo '<img loading="lazy" src="' . $img_src . '" srcset="' . $img_srcset . '">';
 
                     $email_img_src = getEmailImgSrc($img_src_path);
@@ -38,7 +38,7 @@
     </div>
 
     <?php
-        get_template_part('components/enquiry-box', null, array(
+        get_shared_template_part('components/enquiry-box', null, array(
             'price'         => $price,
             'item_name'     => $name,
             'location'      => $location,

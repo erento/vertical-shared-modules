@@ -1,0 +1,110 @@
+.horizontal-scroller-with-controls{
+    .horizontal-scroller-controls{
+        width: calc(100% + 60px);
+        display: flex;
+        align-items: center;
+        margin-left: auto;
+        position: absolute;
+        top: 50%;
+        transform: translate(-30px, -65%);
+        left: 0;
+        z-index: 20;
+        pointer-events: none;
+        justify-content: space-between;
+
+        @media @XSSM {
+            display: none;
+        }
+
+        .btn{
+            width: 60px !important;
+            height: 60px;
+            padding: 18px;
+            border-radius: 30px;
+            transform: rotate(-90deg);
+            flex-shrink: 0;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+            pointer-events: all;
+
+            &:hover{
+                padding: 16px;
+            }
+
+            &:active{
+                opacity: 1;
+            }
+
+            &.disabled{
+                opacity: 0;
+                pointer-events: none;
+            }
+
+            &.prev{
+                margin-right: 15px;
+                transform: rotate(90deg);
+            }
+
+            svg{
+                .SVGBase(@white);
+                transform: translateY(1px);
+            }
+        }
+    }
+
+    .container.container-horizontal-scroller {
+        @media @XSSM {
+            width: 100%;
+            max-width: 100%;
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+
+    horizontal-scroller{
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding-bottom: 20px;
+        position: relative;
+
+        @media @nonXSSM {
+            .hideScrollBar;
+        }
+    }
+}
+
+horizontal-scroller {
+    padding-top: 20px;
+
+    @media @XSSM {
+        .hideScrollBar;
+        // .customScrollBar;
+
+        flex-wrap: nowrap !important;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        padding-bottom: 20px;
+    }
+
+    horizontal-scroller-item {
+        flex-shrink: 0;
+
+        @media @XSSM {
+            scroll-snap-align: start;
+            padding-left: 20px;
+            box-sizing: content-box;
+
+            &:last-of-type {
+                padding-right: 20px;
+            }
+        }
+
+        @media @smDevice {
+            scroll-margin: @floatyContainerMargin_smDevice;
+
+            &:first-of-type {
+                padding-left: @floatyContainerMargin_smDevice;
+            }
+        }
+    }
+}

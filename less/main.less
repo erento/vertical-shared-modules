@@ -1,0 +1,376 @@
+main {
+    width: 100%;
+    height: auto;
+    position: relative;
+}
+
+.fullscreen-modal {
+    width: 100%;
+    position: relative;
+    display: none;
+
+    &.visible {
+        display: block;
+    }
+
+    &.visible-popup {
+        width: 100%;
+        height: 100%;
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+
+        mobile-contact-details-popup {
+            display: flex;
+        }
+    }
+}
+
+.website-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.breadcrumbs {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+
+    li {
+        display: flex;
+        align-items: center;
+
+        &::after {
+            content: ">";
+            display: block;
+            padding: 0 8px;
+        }
+
+        &:last-child::after {
+            display: none;
+        }
+
+        a {
+            white-space: nowrap;
+        }
+
+        span {
+            .textEllipsis;
+        }
+    }
+}
+
+.price-wrapper {
+    color: @grey;
+
+    .price {
+        font-size: 22px;
+        font-weight: 600;
+        color: @primaryColor;
+        padding: 0 6px;
+    }
+
+    .on-request {
+        font-weight: 600;
+        color: @primaryColor;
+        font-size: 20px;
+    }
+}
+
+.non-binding-info {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    line-height: 1.5em;
+    color: @grey;
+    padding-top: 15px;
+    text-align: left;
+
+    @media @XSSM {
+        justify-content: center;
+    }
+
+    .icon {
+        width: 32px;
+        height: 30px;
+        flex-shrink: 0;
+        margin-right: 10px;
+
+        svg {
+            .SVGBase(@grey);
+        }
+    }
+}
+
+.seller-rating-badge {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+
+    &.large {
+        font-size: 18px;
+
+        .icon {
+            width: 20px;
+            height: 20px;
+        }
+    }
+
+    .icon {
+        width: 16px;
+        height: 16px;
+        margin-right: 6px;
+        flex-shrink: 0;
+        transform: translateY(-2px);
+
+        svg {
+            .SVGBase(@yellowColor);
+        }
+    }
+
+    .rating {
+        font-weight: bold;
+    }
+
+    .count {
+        padding-left: 4px;
+        opacity: 0.35;
+    }
+}
+
+.stars-wrapper {
+    width: 92px;
+    height: 14px;
+    position: relative;
+    transform: translateY(-2px);
+
+    .stars-icon {
+        position: absolute;
+
+        svg {
+            display: block;
+            fill: @grey;
+        }
+    }
+
+    .stars-yellow {
+        overflow: hidden;
+
+        svg {
+            fill: @yellowColor;
+        }
+    }
+}
+
+.location-with-pin {
+    .textEllipsis;
+    
+    display: flex;
+    align-items: center;
+    color: @grey;
+    font-size: 14px;
+    padding: 8px 0;
+    
+    .icon{
+        width: 14px;
+        height: 14px;
+        flex-shrink: 0;
+        margin-right: 3px;
+        margin-top: -3px;
+
+        svg{
+            .SVGBase(@grey);
+        }
+    }
+
+    span {
+        .textEllipsis;
+
+        width: 100%;
+    }
+}
+
+.sitemap-link{
+    padding: 12px 0;
+    color: red;
+
+    a{
+        color: @dark;
+        text-decoration: underline;
+    }
+}
+
+.top-spacer-container {
+    padding-top: 140px;
+
+    @media @smDevice {
+        padding-top: 100px;
+    }
+
+    @media @xsDevice {
+        padding-top: 80px;
+    }
+}
+
+.page-container {
+    padding-bottom: 100px;
+
+    @media @xsDevice, @smDevice {
+        padding-bottom: 50px;
+    }
+}
+
+.policies-container {
+    .generalContentStyles;
+    .bigTextContentStyles;
+
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.locations-section {
+    padding-top: 80px;
+
+    @media @xsDevice {
+        padding-top: 60px;
+    }
+
+    &.serp-seo {
+        padding-bottom: 100px;
+
+        @media @XSSM {
+            padding-bottom: 50px;
+        }
+    }
+}
+
+.seo-section {
+    padding: 100px 0;
+
+    @media @XSSM {
+        padding: 40px 0;
+    }
+
+    &.serp-seo {
+        padding-top: 0;
+        padding-bottom: 100px;
+
+        @media @XSSM {
+            padding: 0 0 50px;
+            margin-top: -10px;
+        }
+
+        .paragraph {
+            :first-child {
+                padding-top: 0;
+            }
+        }
+
+        @media @XSSM {
+            padding: 0 0 50px;
+        }
+    }
+
+    a {
+        text-decoration: underline;
+    }
+
+    h1 {
+        font-size: 30px;
+    }
+
+    h2 {
+        font-size: 30px;
+        padding-top: 20px;
+    }
+
+    h3 {
+        font-size: 22px;
+        padding-top: 20px;
+    }
+
+    h4 {
+        font-size: 18px;
+        padding-top: 20px;
+    }
+
+    ul {
+        padding: 10px 0 10px 20px;
+
+        li {
+            padding: 5px 0 5px 17px;
+            position: relative;
+
+            &::before {
+                content: "";
+                width: 6px;
+                height: 6px;
+                position: absolute;
+                left: 0;
+                top: 14px;
+                border-radius: 50%;
+                background: @dark;
+            }
+        }
+    }
+
+    ol {
+        padding: 10px 0 10px 35px;
+
+        li {
+            padding: 5px 0;
+        }
+    }
+}
+
+.html-sitemap {
+    padding-bottom: 100px;
+
+    h2 {
+        padding: 50px 0 10px;
+    }
+
+    .char-section {
+        padding-top: 5px;
+        // column-width: 200px;
+
+        a {
+            width: 33%;
+            display: inline-block;
+            padding: 6px 0;
+            cursor: pointer;
+
+            @media @smDevice {
+                width: 50%;
+            }
+
+            @media @xsDevice {
+                width: 100%;
+            }
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
+///////////////////////////
+// Recaptcha Badge
+///////////////////////////
+.grecaptcha-badge {
+    display: none;
+}
+
+///////////////////////////
+// Google maps autocomplete dropdown
+///////////////////////////
+.pac-container {
+    z-index: 2100 !important;
+}

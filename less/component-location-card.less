@@ -1,0 +1,44 @@
+location-card-component {
+    width: 100%;
+    display: block;
+    cursor: pointer;
+
+    a {
+        width: 100%;
+        display: block;
+
+        &:hover {
+            .image{
+                filter: brightness(90%);
+            }
+        }
+    }
+
+    .image {
+        width: 100%;
+        height: 270px;
+        position: relative;
+        overflow: hidden;
+        border-radius: @cardBorderRadius;
+        transition: filter 0.25s ease;
+        object-fit: cover;
+
+        @media @xsDevice {
+            height: 220px;
+        }
+
+        &::after {
+            .fullAbsolute;
+
+            content: "";
+            background: rgba(0,0,0,0.08);
+            z-index: 10;
+        }
+    }
+
+    .title {
+        width: 100%;
+        padding-top: 10px;
+        font-weight: bold;
+    }
+}

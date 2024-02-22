@@ -161,32 +161,32 @@
         wp_deregister_script('jquery');
 
         // Enqueue jQuery
-        wp_enqueue_script( 'jQuery_js', get_template_directory_uri() . '/js/jquery-3.4.1.min.js', array(), date("ymd-Gis", filemtime( plugin_dir_path( __FILE__ ) . 'js/jquery-3.4.1.min.js' )), true );
+        wp_enqueue_script( 'jQuery_js', get_template_directory_uri() . '/js/jquery-3.4.1.min.js', array(), date("ymd-Gis", filemtime( get_template_directory() . '/js/jquery-3.4.1.min.js' )), true );
 
         // Enqueue main script - script.js
-        wp_enqueue_script( 'customScript_js', get_template_directory_uri() . '/js/scripts.js', array(), date("ymd-Gis", filemtime( plugin_dir_path( __FILE__ ) . 'js/scripts.js' )), true );
+        wp_enqueue_script( 'customScript_js', get_template_directory_uri() . '/js/scripts.js', array(), date("ymd-Gis", filemtime( get_template_directory() . '/js/scripts.js' )), true );
 
         // Enqueue Flickity
-        wp_enqueue_script( 'flickity_js', get_template_directory_uri() . '/js/flickity.pkgd.min.js', array(), date("ymd-Gis", filemtime( plugin_dir_path( __FILE__ ) . 'js/flickity.pkgd.min.js' )), true );
+        wp_enqueue_script( 'flickity_js', get_template_directory_uri() . '/js/flickity.pkgd.min.js', array(), date("ymd-Gis", filemtime( get_template_directory() . '/js/flickity.pkgd.min.js' )), true );
 
         // Magnific Popup Js for Product Modal Gallery
-        wp_enqueue_script( 'magnific_popup_js', get_template_directory_uri() . '/js/jquery.magnific-popup.min.js', array(), date("ymd-Gis", filemtime( plugin_dir_path( __FILE__ ) . 'js/jquery.magnific-popup.min.js' )), true );
+        wp_enqueue_script( 'magnific_popup_js', get_template_directory_uri() . '/js/jquery.magnific-popup.min.js', array(), date("ymd-Gis", filemtime( get_template_directory() . '/js/jquery.magnific-popup.min.js' )), true );
 
         // Enqueue Jquery UI
-        wp_enqueue_script( 'jquery_ui_js', get_template_directory_uri() . '/js/jquery-ui.js', array(), date("ymd-Gis", filemtime( plugin_dir_path( __FILE__ ) . 'js/jquery-ui.js' )), true );
+        wp_enqueue_script( 'jquery_ui_js', get_template_directory_uri() . '/js/jquery-ui.js', array(), date("ymd-Gis", filemtime( get_template_directory() . '/js/jquery-ui.js' )), true );
 
         //////////////////////////////
         //////////////////////////////
 
         // Enque main styles - styles.css
-        wp_enqueue_style( 'styles_css', get_template_directory_uri() . '/css/styles.min.css', array(), date("ymd-Gis", filemtime( plugin_dir_path( __FILE__ ) . 'css/styles.min.css' )), 'all' );
+        wp_enqueue_style( 'styles_css', get_template_directory_uri() . '/css/styles.min.css', array(), date("ymd-Gis", filemtime( get_template_directory() . '/css/styles.min.css' )), 'all' );
     }
     add_action( 'wp_enqueue_scripts', 'my_enqueue_scripts_styles' );
 
     // FOOTER styles
     function prefix_add_footer_styles() {
         // Magnific Popup Css for Product Modal Gallery
-        wp_enqueue_style( 'magnific_popup_css', get_template_directory_uri() . '/css/magnific-popup.css', array(), date("ymd-Gis", filemtime( plugin_dir_path( __FILE__ ) . 'style.css' )), 'all' );
+        wp_enqueue_style( 'magnific_popup_css', get_template_directory_uri() . '/css/magnific-popup.css', array(), date("ymd-Gis", filemtime( get_template_directory() . '/style.css' )), 'all' );
     }
     add_action( 'get_footer', 'prefix_add_footer_styles' );
 

@@ -1,0 +1,57 @@
+featured-items-component {
+    display: block;
+    padding-top: 10px;
+    text-align: center;
+
+    .container {
+        @media @XSSM {
+            width: 100%;
+            padding: 0;
+        }
+
+        h2 {
+            @media @smDevice {
+                margin-left: @floatyContainerMargin_smDevice;
+            }
+
+            @media @xsDevice {
+                padding-left: 20px;
+            }
+        }
+    }
+
+    horizontal-scroller.featured-items-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+
+        horizontal-scroller-item {
+            width: calc(33.33%  - 16px);
+
+            &.desktop-hidden{
+                @media @nonXSSM{
+                    display: none;
+                }
+            }
+
+            @media @nonXSSM {
+                margin-right: 24px;
+                
+                &:nth-child(3n) {
+                    margin-right: 0;
+                }
+            }
+
+            @media @smDevice {
+                width: 360px;
+            }
+
+            @media @xsDevice {
+                width: calc(100vw - 80px);
+            }
+        }
+    }
+
+    .show-more-btn {
+        margin: 6px auto 0;
+    }
+}
