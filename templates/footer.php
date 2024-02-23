@@ -4,7 +4,6 @@
     $svgs = get_svgs();
     $class = '';
     if (!empty($args['class'])) $class = $args['class'];
-    if (SPINOFFID ==='sportauto') $class .= ' dark';
 ?>
             </main>
             <footer id="footer" class="footer <?=$class?>" role="contentinfo">

@@ -249,9 +249,9 @@
                             </div>
                         </div>
                         <?php if (!empty($itemData->properties)): ?>
-                            <div class="top-properties">
-                                <?php
-                                    if (SPINOFFID === 'sportauto') {
+                            <?php
+                                if (SPINOFFID === 'sportauto') {
+                                    echo '<div class="top-properties double-column">';
                                         foreach ($itemData->selected_properties as $key => $property) {
                                             $property_label = false;
     
@@ -288,26 +288,22 @@
                                                 echo '</div>';
                                             }
                                         }
-                                    } else {
+                                    echo '</div>';
+                                } else {
+                                    echo '<div class="top-properties">';
                                         foreach ($itemData->properties as $key => $property) {
                                             echo '<div class="property">';
                                                 echo '<label>' . $property->name . '</label>';
                                                 echo '<div class="value">' . $property->value . '</div>';
                                             echo '</div>';
                                         }
-                                    }
-                                ?>
-                            </div>
+                                    echo '</div>';
+                                }
+                            ?>
                         <?php endif; ?>
 
                         <?php if ($description) { ?>
-                            <?php
-                                if (SPINOFFID === 'sportauto') {
-                                    echo '<h2>' . _t('Description', true) . '</h2>';
-                                } else {
-                                    echo '<h2 class="description">' . _t('Description', true) . '</h2>';
-                                }
-                            ?>
+                            <?php echo '<h2 class="description">' . _t('Description', true) . '</h2>'; ?>
                             <meta itemprop="description" content="<?=strip_tags($description)?>" />
                             <?php
                                 get_shared_template_part('components/read-more-text-container', null, array(

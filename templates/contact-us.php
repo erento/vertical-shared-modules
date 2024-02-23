@@ -11,16 +11,9 @@
     get_header();
     $svgs = get_svgs();
     $img_id = get_post_thumbnail_id();
-
-    $heroClass = '';
-    $containerClass = '';
-    if (SPINOFFID ==='sportauto') {
-        $heroClass = ' black';
-        $containerClass = ' dark';
-    }
 ?>
 
-<div class="contact-us-hero<?=$heroClass;?>">
+<div class="contact-us-hero">
     <?php if ($img_id): ?>
         <?php
             echo createResponsivePicture(
@@ -36,7 +29,7 @@
     <?php endif; ?>
 </div>
 
-<div class="contact-container<?=$containerClass;?>">
+<div class="contact-container">
     <div class="container shift">
         <div class="heading-container">
             <h1><?=the_title();?></h1>
