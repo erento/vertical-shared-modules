@@ -182,6 +182,15 @@
         wp_enqueue_style( 'styles_css', get_template_directory_uri() . '/css/styles.min.css', array(), date("ymd-Gis", filemtime( get_template_directory() . '/css/styles.min.css' )), 'all' );
     }
     add_action( 'wp_enqueue_scripts', 'my_enqueue_scripts_styles' );
+    
+    function changeJavascriptToModule($tag, $handle, $src) {
+        if ("customScript_js" === $handle) {
+            $tag = '<script type="module" src="' . esc_url($src) . '"></script>';
+        }
+
+        return $tag;
+    }
+    add_filter("script_loader_tag", "changeJavascriptToModule", 10, 3);
 
     // FOOTER styles
     function prefix_add_footer_styles() {
