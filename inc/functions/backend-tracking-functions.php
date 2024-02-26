@@ -15,13 +15,18 @@
             global $wpdb;
             $table_name = 'backend_tracking'; // HARDCODED
 
+            $timestamp = NULL;
+            if (ENV === 'DEV') {
+                $timestamp = date('Y-m-d H:i:s');
+            }
+
             $data = [
                 'id' => NULL,
                 'type' => $type,
                 'device' => $device,
                 'item_id' => $item_id,
                 'location' => $location,
-                'timestamp' => NULL
+                'timestamp' => $timestamp
             ];
 
             $wpdb->insert($table_name, $data);

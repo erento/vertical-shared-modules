@@ -1,4 +1,4 @@
-import { HeaderModule } from '../header-module.js';
+import { HeaderModule } from './header-module.js';
 
 export function PdpModule(
     site_url,
@@ -8,6 +8,7 @@ export function PdpModule(
     const headerModule = HeaderModule();
     
     var isAtLeastDesktop = false;
+    var isMobileOrTablet = false;
     var isMobileEnquiryOpen = false;
     var fullscreenGalleryCloned = false;
     var isFullscreenGalleryDesktop = false;
@@ -19,6 +20,7 @@ export function PdpModule(
 
     subscribeToResize(function(event, data) {
         isAtLeastDesktop = data.isAtLeastDesktop;
+        isMobileOrTablet = data.isMobileOrTablet;
         closeAllCustomDropdowns();
         closeAllDatepickers();
         rerenderPdpFullscreenGallery();
@@ -643,10 +645,4 @@ export function PdpModule(
     $('.submit-mobile-enquiry').click(function(){
         formSubmit('mobile');
     });
-
-    return {
-        closeAllCustomDropdowns,
-        closeAllDatepickers,
-        rerenderPdpFullscreenGallery
-    }
 }

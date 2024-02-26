@@ -1,4 +1,11 @@
-export function ReadMoreModule() {
+export function ReadMoreModule(
+    subscribeToResize
+) {
+
+    subscribeToResize(function() {
+        calculateReadMoreTextContainers();
+    });
+
     function calculateReadMoreTextContainers() {
         $('read-more-text-container-component').each(function () {
             var paragraph = $(this).find('.paragraph')[0];
@@ -33,8 +40,4 @@ export function ReadMoreModule() {
         var containerOffset = container.offset().top;
         $(window).scrollTop(windowPosition + containerOffset);
     });
-
-    return {
-        calculateReadMoreTextContainers
-    };
 }

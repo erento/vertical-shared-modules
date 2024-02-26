@@ -641,15 +641,20 @@
         else return false;
     }
 
-    // SAME ACROSS ALL SPINOFFS
+    // SAME ACROSS ALL SPINOFFS + added ENV check!
     function setSellerAsNotified($sellerEmail) {
         global $wpdb;
         $table_name = getNotifiedSellersTableName();
 
+        $timestamp = NULL;
+        if (ENV === 'DEV') {
+            $timestamp = date('Y-m-d H:i:s');
+        }
+
         $data = [
             'id' => NULL,
             'seller_email' => $sellerEmail,
-            'timestamp' => NULL
+            'timestamp' => $timestamp
         ];
 
         $wpdb->insert($table_name, $data);

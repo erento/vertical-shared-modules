@@ -1,10 +1,10 @@
 export function ListviewItemsModule() {
     const listviewItemsFlickityGalleries = [];
-    const listviewItems = document.querySelectorAll(".listview-item-component");
-
+    const listviewItems = document.querySelectorAll("listview-item-component");
+    
     if (listviewItems.length > 0) {
         listviewItems.forEach(function(listviewItem, index) {
-            const flickityGallery = $(listviewItem).find('.flickity-gallery-component').flickity({
+            const flickityGallery = $(listviewItem).find('flickity-gallery-component').flickity({
                 cellAlign: 'left',
                 contain: true,
                 lazyLoad: 1,
