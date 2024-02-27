@@ -4,4 +4,4 @@ deployment:
     - export PROJECTPATH=/home/erento/public_html/vertical-shared-modules/test-folder/
     - /bin/rm -Rf $PROJECTPATH
     - /bin/mkdir $PROJECTPATH
-    - /bin/cp -R /* $PROJECTPATH
+    - /bin/cp -R components $PROJECTPATH
