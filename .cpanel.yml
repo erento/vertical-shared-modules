@@ -1,7 +1,7 @@
 ---
 deployment:
   tasks:
-    - export PROJECTPATH=/home/erento/public_html/vertical-shared-modules/test-folder2/
+    - export PROJECTPATH=/home/erento/public_html/vertical-shared-modules/
     - /bin/rm -Rf $PROJECTPATH
     - /bin/mkdir $PROJECTPATH
     - /bin/cp -R * $PROJECTPATH
