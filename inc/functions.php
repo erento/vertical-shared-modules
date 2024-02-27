@@ -145,7 +145,7 @@
     function get_svgs() {
         static $svgs = NULL;
         if ( empty( $svgs ) ) {
-            $svgs = require_once(get_template_directory() . '/assets/svg/svgs.php');
+            $svgs = require_once(SHARED_MODULES . 'assets/svgs.php');
         }
         return $svgs;
     }
