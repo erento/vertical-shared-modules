@@ -164,7 +164,7 @@
         wp_enqueue_script( 'jQuery_js', get_template_directory_uri() . '/js/jquery-3.4.1.min.js', array(), date("ymd-Gis", filemtime( get_template_directory() . '/js/jquery-3.4.1.min.js' )), true );
 
         // Enqueue main script - script.js
-        wp_enqueue_script( 'customScript_js', get_template_directory_uri() . '/js/scripts.js', array(), date("ymd-Gis", filemtime( get_template_directory() . '/js/scripts.js' )), true );
+        wp_enqueue_script( 'customScript_js', get_template_directory_uri() . '/js/scripts.bundle.min.js', array(), date("ymd-Gis", filemtime( get_template_directory() . '/js/scripts.bundle.min.js' )), true );
 
         // Enqueue Flickity
         wp_enqueue_script( 'flickity_js', get_template_directory_uri() . '/js/flickity.pkgd.min.js', array(), date("ymd-Gis", filemtime( get_template_directory() . '/js/flickity.pkgd.min.js' )), true );
