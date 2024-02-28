@@ -1,9 +1,9 @@
-const eventEmitter = $({});
+const eventEmitter = jQuery({});
 var initialResize = false;
 var windowWidth = false;
 
 function handleResize() {
-    var currentWidth = $(window).width();
+    var currentWidth = jQuery(window).width();
     var isMobile = false;
     var isAtLeastDesktop = false;
     var isMobileOrTablet = false;
