@@ -4,13 +4,21 @@
     $svgs = get_svgs();
     $class = '';
     if (!empty($args['class'])) $class = $args['class'];
-?>
+
+    $logo = false;
+    if (SPINOFFID === 'sportauto') { $logo = $svgs['logo-sportauto']; }
+    elseif (SPINOFFID === 'limo') { $logo = $svgs['logo-limo']; }
+    elseif (SPINOFFID === 'zelte') { $logo = $svgs['logo-zelte']; }
+    elseif (SPINOFFID === 'oldtimer') { $logo = $svgs['logo-oldtimer']; }
+    ?>
             </main>
             <footer id="footer" class="footer <?=$class?>" role="contentinfo">
                 <div class="container">
                     <div class="footer-wrapper">
                         <div class="footer-top" itemscope itemtype="http://schema.org/LocalBusiness">
-                            <div class="logo"><?=$svgs['logo']?></div>
+                            <?php if ($logo) { ?>
+                                <div class="logo"><?=$logo?></div>
+                            <?php } ?>
                             <div class="company-block">
                                 <b itemprop="name"><?=get_option('custom_site_company_name')?></b><br/>
 

@@ -23,13 +23,13 @@
     $show_ratings       = false;
     $price              = fetchPrice($itemData);
     $breadcrumbs_data   = false;
-    $last_link          = end($breadcrumbs_data);
 
     if (SPINOFFID === 'sportauto') {
         $breadcrumbs_data = getPdpBreadcrumbsData();
     } else {
         $breadcrumbs_data = getPdpBreadcrumbsData($itemData);
     }
+    $last_link = end($breadcrumbs_data);
 
     if (property_exists($itemData, 'description')) $description = $itemData->description;
     if (property_exists($itemData, 'hiringTerms')) $hiring_terms = $itemData->hiringTerms;
