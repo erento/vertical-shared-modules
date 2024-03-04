@@ -2,6 +2,8 @@
     if ( ! defined( 'ABSPATH' ) ) exit;
 
     $sharedTranslations = [
+        'Category' => 'Kategorie',
+        'Categories' => 'Kategorien',
         'Locations' => 'Standorte',
         'Location' => 'Standort',
         'other location' => 'weiterer Standort',
@@ -12,18 +14,27 @@
         'Delivery' => 'Lieferung',
         'Shipping' => 'Versand',
         'All' => 'Alle',
+        'All vehicles' => 'Alle Fahrzeuge',
+        'All tents' => 'Alle Zelte',
+        'Type a location...' => 'Ort angeben...',
         'Germany' => 'Deutschland',
+        'whole Germany' => 'ganz Deutschland',
+        'close to you' => 'deiner Nähe',
         'Search' => 'Suche',
         'Price' => 'Preis',
         'Price on request' => 'Preis auf Anfrage',
         'from' => 'ab',
         'Price could not be verified' => 'Preis konnte nicht bestätigt werden',
+        'Search for vehicles:' => 'Suche nach Fahrzeugen:',
+        'Search for tents:' => 'Suche nach Zelten:',
+        'Search for oldtimers:' => 'Nach Oldtimer suchen:',
         'No results' => 'Keine Ergebnisse',
         'GET_MORE_RESULTS' => 'Ändere die Suche oder hebe Einschränungen auf, um mehr Ergebnisse zu erhalten.',
         'Help & contact' => 'Hilfe & Kontakt',
         'Load more' => 'Mehr laden',
         'No photo' => 'Kein Foto',
         'View more' => 'Mehr sehen',
+        'View more offers' => 'Weitere Angebote anzeigen',
         'Contact' => 'Kontakt',
         'Pickup' => 'Abholung',
         'Return' => 'Rückgabe',
@@ -40,6 +51,8 @@
         'Show less...' => 'Weniger anzeigen',
         'Contact supplier directly' => 'Vermieter direkt kontaktieren',
         'Call Supplier' => 'Verkäufer anrufen',
+        'Enquire now' => 'Jetzt anfragen',
+        'Enquire on this item' => 'Jetzt anfragen',
         'Send Enquiry' => 'Jetzt anfragen',
         'Back to item' => 'Zurück zum Artikel',
         'Select period' => 'Zeitraum auswählen',
@@ -117,13 +130,14 @@
 
     $allTranslations = array_merge($sharedTranslations, $spinoffTranslations);
 
-    function _t( $translateKey, $return = false ) {
+    function _t( $translateKey, $return = false, $variable = false ) {
         global $allTranslations;
 
         $translatedString = 'No translation'; // Fail silently
 
         if (array_key_exists($translateKey, $allTranslations)) {
             $translatedString = $allTranslations[$translateKey];
+            if ($variable) $translatedString = str_replace("%s%", $variable, $translatedString);
         }
 
         if ($return) return $translatedString;

@@ -6,7 +6,7 @@
     $article_id     = array_key_exists('item_id', $args) ? $args['item_id'] : false;
     $category       = array_key_exists('category', $args) ? $args['category'] : false;
     
-    if (SPINOFFID === 'sportauto') {
+    if (SPINOFFID === 'sportauto' || SPINOFFID === 'oldtimer') {
         $fetched_data = $location ? fetchSerpItems($location, 16) : fetchFeaturedItems();
     } else {
         $serp_fetch_api = false;
@@ -59,37 +59,26 @@
                     $location = false;
                     if ($value['item_data']->location->city && $value['item_data']->location->city != '') $location = $value['item_data']->location->city;
 
+                    $featuredItemArgs = [
+                        'card_class'        => $card_class,
+                        'article_id'        => $value['articleId'],
+                        'images'            => $value['item_data']->images,
+                        'image_preset'      => 'homepage_featured_items',
+                        'title'             => $value['item_data']->title,
+                        'location_name'     => $location,
+                        'locations_count'   => $value['item_data']->locationsCount,
+                        'price'             => $item_price_object,
+                        'seller_rating'     => property_exists($value['item_data'], 'sellerRating') ? $value['item_data']->sellerRating : false,
+                    ];
                     if (SPINOFFID === 'sportauto') {
-                        get_shared_template_part('components/featured-item', null, array(
-                            'card_class'        => $card_class,
-                            'article_id'        => $value['articleId'],
-                            'brand_slug'        => $value['properties']['brand'],
-                            'images'            => $value['item_data']->images,
-                            'image_preset'      => 'homepage_featured_items',
-                            'title'             => $value['item_data']->title,
-                            'location_name'     => $location,
-                            'locations_count'   => $value['item_data']->locationsCount,
-                            'price'             => $item_price_object,
-                            'seller_rating'     => property_exists($value['item_data'], 'sellerRating') ? $value['item_data']->sellerRating : false,
-                            'properties'        => array(
-                                'power'             => $value['properties']['power'],
-                                'yearBuilt'         => $value['properties']['year_built'],
-                                'transmission'      => $value['properties']['transmission'],
-                            )
-                        ));
-                    } else {
-                        get_shared_template_part('components/featured-item', null, array(
-                            'card_class'        => $card_class,
-                            'article_id'        => $value['articleId'],
-                            'images'            => $value['item_data']->images,
-                            'image_preset'      => 'homepage_featured_items',
-                            'title'             => $value['item_data']->title,
-                            'location_name'     => $location,
-                            'locations_count'   => $value['item_data']->locationsCount,
-                            'price'             => $item_price_object,
-                            'seller_rating'     => property_exists($value['item_data'], 'sellerRating') ? $value['item_data']->sellerRating : false,
-                        ));
+                        $featuredItemArgs['brand_slug'] = $value['properties']['brand'];
+                        $featuredItemArgs['properties'] = [
+                            'power'             => $value['properties']['power'],
+                            'yearBuilt'         => $value['properties']['year_built'],
+                            'transmission'      => $value['properties']['transmission'],
+                        ];
                     }
+                    get_shared_template_part('components/featured-item', null, $featuredItemArgs);
                 }
             ?>
         </horizontal-scroller>

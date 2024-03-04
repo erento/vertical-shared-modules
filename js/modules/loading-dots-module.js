@@ -25,6 +25,7 @@ export function LoadingDotsModule() {
     });
 
     return {
-        hideLoadingDots
+        hideLoadingDots,
+        animateLoadingDotsBtn
     }
 }

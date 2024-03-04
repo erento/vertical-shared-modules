@@ -1,12 +1,10 @@
-import { HeaderModule } from './header-module.js';
 
 export function PdpModule(
     site_url,
+    headerModule,
     loadingDotsModule,
     subscribeToResize
-) {    
-    const headerModule = HeaderModule();
-    
+) {
     var isAtLeastDesktop = false;
     var isMobileOrTablet = false;
     var isMobileEnquiryOpen = false;

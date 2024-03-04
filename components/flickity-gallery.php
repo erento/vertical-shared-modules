@@ -9,13 +9,7 @@
     $location_ide1      = array_key_exists('location_ide1', $args) ? $args['location_ide1'] : false;
     $locations_count    = array_key_exists('locations_count', $args) ? $args['locations_count'] : false;
     $lazy_loaded        = array_key_exists('lazy_loaded', $args) ? $args['lazy_loaded'] : true;
-    $pdpPermalink       = '';
-
-    if (SPINOFFID === 'sportauto') {
-        $pdpPermalink = getPdpPermalink($article_id, $brand_slug);
-    } else {
-        $pdpPermalink = getPdpPermalink($article_id);
-    }
+    $pdpPermalink       = getPdpPermalink($article_id, $brand_slug);
 
     $selectedLocation   = false;
     if ($location_ide1 && $locations_count > 1) $selectedLocation = 'data-location_ide1="' . $location_ide1 . '" data-item_id="' . $article_id . '" ';

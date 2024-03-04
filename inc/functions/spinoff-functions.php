@@ -1,12 +1,10 @@
 <?php
     if ( ! defined( 'ABSPATH' ) ) exit;
 
-    // SAME ACROSS ALL SPINOFFS
     function getRequestUniqueId() {
         return getSpinoffOrigin() . '_' . time();
     }
 
-    // SAME ACROSS ALL SPINOFFS
     // Add prefix to "/static" URLs
     function getStaticSrc($src) {
         $src = str_replace('static/image-products/', 'img/', $src); // HARDCODED
@@ -15,28 +13,23 @@
         return "https://www.eren.to" . $modified_src; // HARDCODED
     }
 
-    // SAME ACROSS ALL SPINOFFS
     function getCurrentUrl() {
         global $wp;
         return trailingslashit(home_url(add_query_arg(array(), $wp->request)));
     }
 
-    // SAME ACROSS ALL SPINOFFS
     function getHomeUrl() {
         return trailingslashit(home_url());
     }
 
-    // SAME ACROSS ALL SPINOFFS
     function getDomainName() {
         return $_SERVER['HTTP_HOST'];
     }
 
-    // SAME ACROSS ALL SPINOFFS
     function getPDPsuffix() {
         return "-pdp";
     }
 
-    // SAME ACROSS ALL SPINOFFS
     function getTaxonomyPermalink() {
         $base_url = home_url();
         $taxonomy = getMainTaxonomy()['slug'];
@@ -44,8 +37,12 @@
         return trailingslashit($base_url . '/' . $taxonomy);
     }
 
-    function getPdpPermalink($articleId, $brandSlug) {
-        return trailingslashit(getTaxonomyPermalink() . $brandSlug . '/' . $articleId . getPDPsuffix());
+    function getPdpPermalink($articleId, $brandSlug = false) {
+        if ($brandSlug) {
+            return trailingslashit(getTaxonomyPermalink() . $brandSlug . '/' . $articleId . getPDPsuffix());
+        } else {
+            return trailingslashit(getTaxonomyPermalink() . $articleId . getPDPsuffix());
+        }
     }
 
     function getBrandSerpPermalink($brandSlug) {
@@ -64,11 +61,22 @@
         return trailingslashit(getTaxonomyPermalink() . $locationSlug);
     }
 
+    function getMietenCategoryPermalink($mieten_category_slug) {
+        return trailingslashit(getTaxonomyPermalink() . $mieten_category_slug);
+    }
+
+    function getMietenCategoryLocationSerpPermalink($mieten_category_slug, $locationSlug) {
+        return trailingslashit(getTaxonomyPermalink() . $mieten_category_slug . '/' . $locationSlug);
+    }
+
+    function getLocationSlugFromName($locationName) {
+        return strtolower($locationName);
+    }
+
     function getModelSerpPermalink($brandSlug, $modelSlug) {
         return trailingslashit(getTaxonomyPermalink() . $brandSlug . '/' . $modelSlug);
     }
 
-    // SAME ACROSS ALL SPINOFFS
     function getSrcsetString($srcsets, $imageSrc) {
         $i = 0;
         $srcset_string = '';
@@ -82,17 +90,14 @@
         return $srcset_string;
     }
 
-    // SAME ACROSS ALL SPINOFFS
     function getSmallestSrc($srcsets, $imageSrc) {
         return $imageSrc . '?' . $srcsets[0][0];
     }
 
-    // SAME ACROSS ALL SPINOFFS
     function getEmailImgSrc($imageSrc) {
         return $imageSrc . '?width=360&height=200&fit=crop';
     }
 
-    // SAME ACROSS ALL SPINOFFS
     function slugify($title) {
         $title = str_replace('Ä', 'ae', $title);
         $title = str_replace('ä', 'ae', $title);
@@ -106,14 +111,64 @@
         return sanitize_title($title);
     }
 
-    // SAME ACROSS ALL SPINOFFS
+    function getHtmlSitemapUrl() {
+        return 'https://www.erento.com/api/search/staedte/mieten/fahrzeuge_fluggeraete/special_cars/oldtimer?origin=' . getSpinoffOrigin() . '&_requestUniqueId=' . getRequestUniqueId() . '&countryISO=com&lang=de'; // HARDCODED
+    }
+
+    function getHtmlSitemapUrls() {
+        $mieten_categories = apply_filters('getMietenCategories', false);
+        $sitemap_urls_array = [];
+
+        foreach ($mieten_categories as $category_slug => $category_array) {
+            $sitemap_urls_array[$category_slug]['slug'] = $category_slug;
+            $sitemap_urls_array[$category_slug]['title'] = $category_array['h1_title'] . ' in ';
+            $sitemap_urls_array[$category_slug]['api_url'] = 'https://www.erento.com/api/search/staedte' . $category_array['erento_api_call'] . '?origin=' . getSpinoffOrigin() . '&_requestUniqueId=' . getRequestUniqueId() . '&countryISO=com&lang=de';
+        }
+
+        return $sitemap_urls_array;
+    }
+    
+    function fetchHtmlSitemap() {
+        if (SPINOFFID === 'oldtimer') {
+            $url = getHtmlSitemapUrl();
+            $sitemap_fetch = @file_get_contents($url);
+            if (!$sitemap_fetch) return false;
+            $sitemap_fetch = json_decode($sitemap_fetch);
+    
+            return $sitemap_fetch->cities;
+        } else {
+            $sitemap_array = [];
+            $urls = getHtmlSitemapUrls();
+    
+            foreach ($urls as $key => $url_array) {
+                $sitemap_fetch = @file_get_contents($url_array['api_url']);
+                if ($sitemap_fetch) {
+                    $sitemap_fetch = json_decode($sitemap_fetch);
+    
+                    foreach ($sitemap_fetch->cities as $character => $cities_array) {
+                        if (empty($sitemap_array[$character])) $sitemap_array[$character] = [];
+    
+                        foreach ($cities_array as $key => $city_name) {
+                            $city_slug = slugify($city_name);
+                            $city_url = getMietenCategoryLocationSerpPermalink($url_array['slug'], $city_slug);
+                            $city_url = '<a href="' . $city_url . '" target="_blank">' . $url_array['title'] . $city_name . '</a>';
+    
+                            array_push($sitemap_array[$character], $city_url);
+                        }
+                    }
+                }
+            }
+    
+            return $sitemap_array;
+        }
+    }
+
     function getItemUrl($articleId) {
         $url = 'https://www.erento.com/api/search/products/'.$articleId.'?origin=' . getSpinoffOrigin() . '&_requestUniqueId=' . getRequestUniqueId() . '&forFrontend=true&lang=de';
 
         return $url;
     }
 
-    // SAME ACROSS ALL SPINOFFS
     function fetchPdpData($articleId) {
         $url = getItemUrl($articleId);
         $selected_product_data = false;
@@ -134,7 +189,6 @@
         return $selected_product_data;
     }
 
-    // SAME ACROSS ALL SPINOFFS
     function getSellerPhoneNumbers($sellerInfo) {
         $phone_numbers = [];
 
@@ -152,12 +206,10 @@
         else return $phone_numbers;
     }
 
-    // SAME ACROSS ALL SPINOFFS
     function generateSellerUserUrl($userId) {
         return 'https://www.erento.com/api/user/' . $userId . '?_requestUniqueId=' . getRequestUniqueId();
     }
 
-    // SAME ACROSS ALL SPINOFFS
     function getSellerEmail($sellerId) {
         $url = generateSellerUserUrl($sellerId);
         $fetched_data = @file_get_contents($url);
@@ -177,7 +229,6 @@
         return $seller_email;
     }
 
-    // SAME ACROSS ALL SPINOFFS
     function generatePickupAddress($location) {
         $html = '';
 
@@ -201,8 +252,7 @@
         return $html;
     }
 
-    // SAME ACROSS ALL SPINOFFS
-    function getAllLocations($locations) {
+    function getAllLocationsList($locations) {
         $html = '';
         foreach ($locations as $key => $locationObj) {
             $locationString = generatePickupAddress($locationObj);
@@ -212,7 +262,6 @@
         return $html;
     }
 
-    // SAME ACROSS ALL SPINOFFS
     function generateSellerCompanyInfo($sellerInfo) {
         // Company name
         $company_name = false;
@@ -234,7 +283,42 @@
         }
     }
 
-    // ALMOST THE SAME ACROSS ALL SPINOFFS - with exception of the if (!empty($breadcrumbsData[$i]['name'])) { TEST THIS!
+    function generateCompanyAddress($location, $includeStreet = false, $includeLinkToSerp = false) {
+        $html = '<span class="company-address-wrapper">';
+
+            if ($includeStreet && property_exists($location, 'street')) {
+                $html .= '<span>' . $location->street . '</span>';
+            }
+
+            if (property_exists($location, 'postalCode') || property_exists($location, 'city')) {
+                $html .= '<span>';
+                    if (property_exists($location, 'postalCode')) $html .= $location->postalCode;
+                    if (property_exists($location, 'postalCode') && property_exists($location, 'city')) $html .= ' ';
+                    if (property_exists($location, 'city')) {
+                        if ($includeLinkToSerp !== false) {
+                            $city_slug = slugify($location->city);
+                            if (SPINOFFID === 'sportauto' || SPINOFFID === 'oldtimer') {
+                                $html .= '<a href="' . getLocationSerpPermalink($city_slug) . '">';
+                            } else {
+                                $mieten_category_slug = getCategorySlugFromApi($includeLinkToSerp);
+                                $html .= '<a href="' . getMietenCategoryLocationSerpPermalink($mieten_category_slug, $city_slug) . '">';
+                            }
+                        }
+                        $html .= $location->city;
+                        if ($includeLinkToSerp !== false) $html .= '</a>';
+                    }
+                $html .= '</span>';
+            }
+
+            if (property_exists($location, 'countryISO')) {
+                $html .= '<span>' . countryIsoToCountry($location->countryISO) . '</span>';
+            }
+
+        $html .= '</span>';
+
+        return $html;
+    }
+
     function generateBreadcrumbsHtml($breadcrumbsData, $isLastItemLink = false) {
         $breadcrumbs_html = '<ol class="breadcrumbs" itemscope itemtype="https://schema.org/BreadcrumbList">';
         for ($i=0; $i < sizeof($breadcrumbsData); $i++) {
@@ -256,7 +340,6 @@
         return $breadcrumbs_html;
     }
 
-    // SAME ACROSS ALL SPINOFFS
     function getPagination($data) {
         $svgs           = get_svgs();
         $total_count    = $data->total;
@@ -316,7 +399,6 @@
         return $pagination_html;
     }
 
-    // SAME ACROSS ALL SPINOFFS
     function fetchFeaturedItems() {
         $from = 0;
         $size = 30;
@@ -325,7 +407,7 @@
         return fetchAndResolveItems($url);
     }
 
-    // ONLY FOR SPORTAUTO SPINOFF
+    // Only for SPORTAUTO spinoff
     function resolveSerpLocation($ctx) {
         $location_name = resolveSerpLocationFromApi($ctx);
         
@@ -338,7 +420,6 @@
         return $location_name;
     }
 
-    // SAME ACROSS ALL SPINOFFS
     function resolveSerpLocationFromApi($ctx) {
         if (is_object($ctx) && property_exists($ctx, 'geocodedAddress')) {
             $address            = json_decode($ctx->geocodedAddress, true);
@@ -378,7 +459,6 @@
         }
     }
 
-    // SAME ACROSS ALL SPINOFFS
     function formatIndexableLocations($indexableLocationsString) {
         $indexable_locations_array = preg_split('/<br[^>]*>/i', $indexableLocationsString);
         $indexable_locations_array = array_map('ltrim', $indexable_locations_array);
@@ -387,7 +467,6 @@
         return $indexable_locations_array;
     }
 
-    // SAME ACROSS ALL SPINOFFS
     function getLocationHtml($locationName, $locationsCount) {
         $location_html = '';
 
@@ -407,7 +486,7 @@
         return $location_html;
     }
 
-    // ONLY FOR SPORTAUTO SPINOFF
+    // only for SPORTAUTO spinoff
     function isLocationSerp($taxonomyParams) {
         if (is_array($taxonomyParams) &&
             (count($taxonomyParams) == 1) &&
@@ -416,7 +495,6 @@
         } else return false;
     }
 
-    // SAME ACROSS ALL SPINOFFS
     function getLastEnquiryHours($articleId) {
         $currentHour = (int)date('H');
         $articleLastNum = (int)$articleId[-1];
@@ -431,7 +509,6 @@
         return $lastEnqHour;
     }
 
-    // SAME ACROSS ALL SPINOFFS
     function getSellerRatingBadgeHtml($sellerRating, $size = 'small', $schema = false) {
         if (!is_object($sellerRating) || !property_exists($sellerRating, 'count') || $sellerRating->count === 0) return false;
 
@@ -452,7 +529,6 @@
         return $badgeHtml;
     }
 
-    // SAME ACROSS ALL SPINOFFS
     function fetchSellerReviews($sellerId) {
         $url = 'https://www.erento.com/api/reviews/reviews/seller/' . $sellerId . '?page=0&size=30&_requestUniqueId=' . getRequestUniqueId();
 
@@ -462,7 +538,6 @@
         return json_decode($reviews_fetch);
     }
 
-    // SAME ACROSS ALL SPINOFFS
     function getPriceHtml($priceArray) {
         $price_html = '<div class="price-wrapper">';
 
@@ -491,7 +566,6 @@
         return $price_html;
     }
 
-    // SAME ACROSS ALL SPINOFFS
     function getPriceInText($priceArray) {
         $price_txt = '';
 
@@ -516,7 +590,6 @@
         return $price_txt;
     }
 
-    // SAME ACROSS ALL SPINOFFS
     function getPriceForMicrodata($priceArray) {
         if ( is_object($priceArray) && property_exists($priceArray, 'price')) {
             $price_array    = $priceArray->price;
@@ -537,7 +610,6 @@
         } else return false;
     }
 
-    // SAME ACROSS ALL SPINOFFS
     // Get prices for Serp items
     function fetchPrice($item) {
         $item_number    = $item->ide1;
@@ -561,7 +633,6 @@
         return $product_price;
     }
 
-    // SAME ACROSS ALL SPINOFFS
     // Get prices for Serp items
     function fetchPrices($items) {
         if (empty($items)) {
@@ -612,7 +683,6 @@
         return $resp;
     }
 
-    // SAME ACROSS ALL SPINOFFS
     // Format date with german Month
     function getFormatedDateDE($date) {
         $monthsDE = _t('MONTHS', true);
@@ -625,12 +695,10 @@
         return $month . ' ' . $day . ', ' . $year;
     }
 
-    // SAME ACROSS ALL SPINOFFS
     function getNotifiedSellersTableName() {
         return 'notified_sellers'; // HARDCODED
     }
 
-    // SAME ACROSS ALL SPINOFFS
     function wasSellerNotified($sellerEmail) {
         global $wpdb;
         $table_name = getNotifiedSellersTableName();
@@ -641,7 +709,6 @@
         else return false;
     }
 
-    // SAME ACROSS ALL SPINOFFS + added ENV check!
     function setSellerAsNotified($sellerEmail) {
         global $wpdb;
         $table_name = getNotifiedSellersTableName();
@@ -660,7 +727,6 @@
         $wpdb->insert($table_name, $data);
     }
 
-    // SAME ACROSS ALL SPINOFFS, WHATCH OUT FOR SHARED MODULES INCLUDE
     function sendEnqEmailToCustomer($enqFormData) {
         $headers = "MIME-Version: 1.0" . "\r\n";
         $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
@@ -679,7 +745,6 @@
         return $mail_sent;
     }
 
-    // SAME ACROSS ALL SPINOFFS, WHATCH OUT FOR SHARED MODULES INCLUDE
     function sendEnqEmailToSeller($enqFormData) {
         if (ENV == 'PROD') {
             $seller_email = $enqFormData['sellerEmail'];
