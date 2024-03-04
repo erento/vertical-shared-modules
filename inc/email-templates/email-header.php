@@ -268,6 +268,6 @@
                     <table align="center" bgcolor="#fff" border="0" cellpadding="0" cellspacing="0" width="600" class="email-container" style="background-color: #fff; border-collapse: collapse;">
                         <tr>
                             <td align="left" class="header-logo-image email-padding">
-                                <a href="<?=get_home_url()?>"><img src="<?php echo get_template_directory_uri(); ?>/assets/email/logo.png" width="160"></a>
+                                <a href="<?=get_home_url()?>"><img src="<?php echo get_template_directory_uri(); ?>/assets/email/email-logo.png" width="160"></a>
                             </td>
                         </tr>

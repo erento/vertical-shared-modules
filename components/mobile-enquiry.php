@@ -51,7 +51,7 @@
     ?>
 
     <div class="container footer-container hide-after-enq-submit">
-        <div class="btn submit-mobile-enquiry loading-dots __solid __color __big __shadow __bold">
+        <div class="btn<?=(SPINOFFID==='limo') ? ' purple' : ''?> submit-mobile-enquiry loading-dots __solid __color __big __shadow __bold">
             <span><?=_t('Send Enquiry')?></span>
         </div>
         <div class="non-binding-info">

@@ -200,6 +200,10 @@
     function prefix_add_footer_styles() {
         // Magnific Popup Css for Product Modal Gallery
         wp_enqueue_style( 'magnific_popup_css', get_template_directory_uri() . '/css/magnific-popup.css', array(), date("ymd-Gis", filemtime( get_template_directory() . '/style.css' )), 'all' );
+
+        if (SPINOFFID !== 'sportauto') {
+            wp_enqueue_script( 'googlemaps', 'https://maps.googleapis.com/maps/api/js?libraries=places&language=de&callback=onMapInit&key=' . getGMapsApiKey(), array(), '1.0', true );
+        }
     }
     add_action( 'get_footer', 'prefix_add_footer_styles' );
 

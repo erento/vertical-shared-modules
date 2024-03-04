@@ -41,11 +41,7 @@
         </div>
 
         <?php
-            if (SPINOFFID === 'sportauto') {
-                echo '<a href="' . getPdpPermalink($article_id, $brand_slug) . '"';
-            } else {
-                echo '<a href="' . getPdpPermalink($article_id) . '"';
-            }
+            echo '<a href="' . getPdpPermalink($article_id, $brand_slug) . '"';
             echo ' class="listview-info-link PDP-link"';
             if ($locations_count > 1) echo ' data-location_ide1="' . $location_ide1 . '" data-item_id="' . $article_id . '"';
             echo '>';

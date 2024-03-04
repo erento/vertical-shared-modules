@@ -153,7 +153,7 @@
 
             <div class="ss-error ss-error-general"></div>
 
-            <div class="send-enquiry-btn btn loading-dots __solid __color __bold">
+            <div class="send-enquiry-btn<?=(SPINOFFID==='limo') ? ' purple' : ''?> btn loading-dots __solid __color __bold">
                 <span><?=_t('Send Enquiry')?></span>
             </div>
 

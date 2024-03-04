@@ -39,13 +39,7 @@
                 ?>
             </div>
 
-            <?php
-                if (SPINOFFID === 'sportauto') {
-                    echo '<a href="' . getPdpPermalink($article_id, $brand_slug) . '" class="PDP-link">';
-                } else {
-                    echo '<a href="' . getPdpPermalink($article_id) . '" class="PDP-link">';
-                }
-            ?>
+            <?php echo '<a href="' . getPdpPermalink($article_id, $brand_slug) . '" class="PDP-link">';?>
                 <div class="info">
                     <div class="location-rating-wrapper">
                         <?=getLocationHtml($location_name, $locations_count)?>

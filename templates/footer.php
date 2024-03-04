@@ -56,6 +56,35 @@
                 </div>
             </footer>
         </div>
+        <script>
+            function isObject(checkObject) {
+                if (typeof checkObject === 'object' && !Array.isArray(checkObject) && checkObject !== null) return true;
+                return false;
+            }
+            
+            function onMapInit() {
+                const SearchboxFormLocationInputs = document.querySelectorAll('form.search-box input[name="location"]');
+                if (SearchboxFormLocationInputs.length > 0) {
+                    SearchboxFormLocationInputs.forEach(function (inputElement, index) {
+                        var autocomplete = new google.maps.places.Autocomplete(inputElement);
+            
+                        autocomplete.setFields(['name']);
+            
+                        inputElement.parentElement.querySelector('.clear-icon').onclick = function() {
+                            autocomplete.set('place',null);
+                            inputElement.value = '';
+                            inputElement.parentElement.classList.remove('show-clear-btn');
+                            inputElement.focus();
+                        };
+            
+                        inputElement.onkeyup = function() {
+                            if (inputElement.value != '') inputElement.parentElement.classList.add('show-clear-btn');
+                            else inputElement.parentElement.classList.remove('show-clear-btn');
+                        };
+                    });
+                }
+            }
+        </script>
 		<?php wp_footer(); ?>
         <?php get_shared_template_part('components/cookie-consent'); ?>
 	</body>

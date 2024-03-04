@@ -220,7 +220,7 @@
                         <div class="location">
                             <div class="icon"><?=$svgs['location_pin']?></div>
                             <?php
-                                if (SPINOFFID === 'sportauto') {
+                                if (SPINOFFID === 'sportauto' || SPINOFFID === 'oldtimer') {
                                     echo generateCompanyAddress($location, false, true);
                                 } else {
                                     echo generateCompanyAddress($location, false, $itemData);
@@ -380,7 +380,7 @@
                         <div class="price-container">
                             <?=getPriceHtml($price)?>
                         </div>
-                        <div class="title hide-after-enq-submit"><?=_t('Enquire on this car')?></div>
+                        <div class="title hide-after-enq-submit"><?=_t('Enquire on this item')?></div>
                         <?php
                             get_shared_template_part('components/enquiry-box', null, array(
                                 'item_name'     => $name,
@@ -413,7 +413,7 @@
 
             <?php
                 $category = false;
-                if (SPINOFFID !== 'sportauto') {
+                if (SPINOFFID === 'limo' || SPINOFFID === 'zelte') {
                     $category = getCategorySlugFromApi($itemData);
                 }
 
@@ -441,7 +441,7 @@
                                         get_shared_template_part('components/read-more-text-container', null, array(
                                             'component_class'   => 'locations',
                                             'btn_text'          => _t('Show all...', true),
-                                            'text'              => getAllLocations($locations),
+                                            'text'              => getAllLocationsList($locations),
                                         ));
                                     } else {
                                         if (SPINOFFID === 'sportauto') {
@@ -508,7 +508,7 @@
                         echo '<div class="btn call-seller-btn-mobile __dark __solid __shadow __bold"><div class="icon">' . $svgs['phone'] . '</div></div>';
                     }
                 ?>
-                <div class="btn open-mobile-enquiry __solid __color __shadow __bold"><?=_t('Inquire now')?></div>
+                <div class="btn open-mobile-enquiry __solid __color __shadow __bold"><?=_t('Enquire now')?></div>
             </div>
         </div>
     </article>
