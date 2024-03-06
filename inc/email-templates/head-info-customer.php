@@ -29,7 +29,7 @@
                     <!-- BUTTON -->
                     <table class="button-table" width="280" border="0" cellspacing="0" cellpadding="0">
                         <tr>
-                            <td height="50" valign="center" align="center" bgcolor="#E0434C" style="border-radius: 6px;">
+                            <td height="50" valign="center" align="center" bgcolor="<?=$btnColor?>" style="border-radius: 6px;">
                                 <a href="tel:<?=$phone_number?>" target="_blank" class="button-link"><?=$phone_number?></a>
                             </td>
                         </tr>

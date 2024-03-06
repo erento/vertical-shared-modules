@@ -1,5 +1,7 @@
 <?php if ( ! defined( 'ABSPATH' ) ) { exit; } ?>
 
+<?php include('email-constants.php') ?>
+
 <?php include('email-header.php') ?>
 
     <?php include('head-info-seller.php') ?>

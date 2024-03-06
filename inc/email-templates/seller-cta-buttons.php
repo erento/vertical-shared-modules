@@ -9,7 +9,7 @@
                         <!-- BUTTON -->
                         <table class="button-table" width="100%" border="0" cellspacing="0" cellpadding="0">
                             <tr>
-                            <td height="50" valign="center" align="center" bgcolor="#E0434C" style="border-radius: 6px;">
+                            <td height="50" valign="center" align="center" bgcolor="<?=$btnColor?>" style="border-radius: 6px;">
                                 <!-- TO-DO (Phase 2) add dates&hours, item name in the body of email. -->
                                 <a href='mailto:<?=$enqFormData['customerEmail']?>?subject=Neuigkeiten zu Ihrer Anfrage: <?=$enqFormData['itemName']?>' target="_blank" class="button-link"><?=_t('EMAIL_REPLY')?></a>
                             </td>
@@ -22,7 +22,7 @@
                         <!-- BUTTON -->
                         <table class="button-table" width="100%" border="0" cellspacing="0" cellpadding="0">
                             <tr>
-                                <td height="50" valign="center" align="center" bgcolor="#E0434C" style="border-radius: 6px;">
+                                <td height="50" valign="center" align="center" bgcolor="<?=$btnColor?>" style="border-radius: 6px;">
                                     <a href="tel:<?=$enqFormData['customerPhone']?>" target="_blank" class="button-link"><?=_t('CALL_CUSTOMER')?></a>
                                 </td>
                             </tr>
