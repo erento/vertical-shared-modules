@@ -86,6 +86,5 @@
             }
         </script>
 		<?php wp_footer(); ?>
-        <?php get_shared_template_part('components/cookie-consent'); ?>
 	</body>
 </html>
