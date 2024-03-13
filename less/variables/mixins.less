@@ -178,10 +178,19 @@
 @-moz-keyframes bouncingdots { 0%, 60%, 100% { -webkit-transform: scale(0.6); } 30% { -webkit-transform: scale(1.0); } }
 @keyframes bouncingdots { 0%, 60%, 100% { -webkit-transform: scale(0.6); transform: scale(0.6); }30% { -webkit-transform: scale(1.0); transform: scale(1.0); } }
 
+/* Keyframes for shimmer */
+@-webkit-keyframes shimmer { to { background-position-x: 0% } }
+@-moz-keyframes shimmer { to { background-position-x: 0% } }
+@keyframes shimmer { to { background-position-x: 0% } }
+
 /* Keyframes for the fade-in */
 @-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
 @-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
 @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+@-webkit-keyframes fadeOut { from { opacity:1; } to { opacity:0; } }
+@-moz-keyframes fadeOut { from { opacity:1; } to { opacity:0; } }
+@keyframes fadeOut { from { opacity:1; } to { opacity:0; } }
 
 .animationFadeIn(@AnimationLess: fadeIn ease-in 0.2s forwards) {
     -webkit-animation: @AnimationLess;

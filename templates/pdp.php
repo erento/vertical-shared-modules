@@ -55,7 +55,17 @@
     }
 
     $image_presets = [
-        'main_image' => [
+        'fullscreen_gallery' => [
+            'srcset' => [
+                ['width=350&height=400&fit=bounds', '350w'],
+                ['width=450&height=400&fit=bounds', '450w'],
+                ['width=550&height=400&fit=bounds', '550w'],
+                ['width=700&height=500&fit=bounds', '700w'],
+                ['width=900&height=600&fit=bounds', '900w']
+            ],
+            'sizes' => '(max-width: 991px) 100vw, (min-width: 992px) and (max-width: 1199px) 700px, (min-width: 1200px) 900px'
+        ],
+        'main_gallery' => [
             'srcset' => [
                 ['width=320&height=224&fit=crop', '320w'],
                 ['width=375&height=263&fit=crop', '375w'],
@@ -74,6 +84,9 @@
             ]
         ]
     ];
+
+    $flickityGallery = buildPdpFlickityGallery($images, $image_presets['main_gallery'], $name);
+    $fullscreenFlickityGallery = buildPdpFlickityGallery($images, $image_presets['fullscreen_gallery'], $name, true);
 
     // pre_dump($itemData);
 
@@ -112,7 +125,9 @@
             </div>
 
             <div class="fullscreen-gallery-slides-wrapper">
-                <div class="fullscreen-gallery-slides"></div>
+                <div class="fullscreen-gallery-slides">
+                    <?=$fullscreenFlickityGallery['html']?>
+                </div>
             </div>
         </div>
 
@@ -145,45 +160,12 @@
                             </div>
                         <?php endif ?>
                         <div class="gallery">
-                            <?php
-                                $email_img_src = false;
-                                $images_thumbs = array();
-
-                                if ($images) {
-                                    $conter = 0;
-                                    foreach ($images as $key => $image) {
-                                        $image_src = getStaticSrc($image->src);
-                                        $selected_preset = $image_presets['main_image'];
-                                        $smallest_src = getSmallestSrc($selected_preset['srcset'], $image_src);
-                                        $srcset_string = getSrcsetString($selected_preset['srcset'], $image_src);
-                                        array_push($images_thumbs, $image_src);
-
-                                        echo '<div class="slide" data-id="' . $key . '">';
-                                            echo '<img ';
-                                                if ($conter == 0) {
-                                                    $email_img_src = getEmailImgSrc($image_src);
-                                                    echo 'itemprop="image" ';
-                                                    echo 'src="' . $smallest_src . '" ';
-                                                    echo 'srcset="' . $srcset_string . '" ';
-                                                } else {
-                                                    echo 'loading="lazy" ';
-                                                    echo 'data-flickity-lazyload="' . $smallest_src . '" ';
-                                                    echo 'data-flickity-lazyload-srcset="' . $srcset_string . '" ';
-                                                }
-                                                echo 'sizes="' . $selected_preset['sizes'] . '" ';
-                                                echo 'alt="' . $name . '"';
-                                            echo '>';
-                                        echo '</div>';
-                                        $conter++;
-                                    }
-                                } else {
-                                    echo '<div class="no-photo-slide">' . _t('No photo', true) . '</div>';
-                                }
-                            ?>
+                            <?=$flickityGallery['html']?>
                         </div>
                     </div>
 
                     <?php
+                        $images_thumbs = $flickityGallery['images_thumbs'];
                         if (sizeof($images_thumbs) > 0) {
                             echo '<div class="main-gallery-thumbs-wrapper">';
                                 echo '<div class="thumbs-inner">';
@@ -390,7 +372,7 @@
                                 'seller_id'     => $seller_id,
                                 'seller_phone'  => $phone_numbers,
                                 'last_link'     => $last_link,
-                                'item_image'    => $email_img_src,
+                                'item_image'    => $flickityGallery['email_img_src'],
                             ));
                         ?>
                     </div>

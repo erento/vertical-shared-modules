@@ -319,6 +319,50 @@
         return $html;
     }
 
+    function buildPdpFlickityGallery($images, $image_presets, $name, $allLazyLoded = false) {
+        $returnObject = [
+            'html' => '<div class="no-photo-slide">' . _t('No photo', true) . '</div>',
+            'images_thumbs' => [],
+            'email_img_src' => false
+        ];
+
+        if ($images) {
+            $html = '';
+            $images_thumbs = [];
+            $conter = 0;
+
+            foreach ($images as $key => $image) {
+                $image_src = getStaticSrc($image->src);
+                array_push($images_thumbs, $image_src);
+                $smallest_src = getSmallestSrc($image_presets['srcset'], $image_src);
+                $srcset_string = getSrcsetString($image_presets['srcset'], $image_src);
+
+                $html .= '<div class="slide" data-id="' . $key . '">';
+                    $html .= '<img ';
+                        if ($conter == 0 && $allLazyLoded === false) {
+                            $returnObject['email_img_src'] = getEmailImgSrc($image_src);
+                            $html .= 'itemprop="image" ';
+                            $html .= 'src="' . $smallest_src . '" ';
+                            $html .= 'srcset="' . $srcset_string . '" ';
+                        } else {
+                            $html .= 'loading="lazy" ';
+                            $html .= 'data-flickity-lazyload="' . $smallest_src . '" ';
+                            $html .= 'data-flickity-lazyload-srcset="' . $srcset_string . '" ';
+                        }
+                        $html .= 'sizes="' . $image_presets['sizes'] . '" ';
+                        $html .= 'alt="' . $name . '"';
+                    $html .= '>';
+                $html .= '</div>';
+                $conter++;
+            }
+
+            $returnObject['html'] = $html;
+            $returnObject['images_thumbs'] = $images_thumbs;
+        }
+
+        return $returnObject;
+    }
+
     function generateBreadcrumbsHtml($breadcrumbsData, $isLastItemLink = false) {
         $breadcrumbs_html = '<ol class="breadcrumbs" itemscope itemtype="https://schema.org/BreadcrumbList">';
         for ($i=0; $i < sizeof($breadcrumbsData); $i++) {

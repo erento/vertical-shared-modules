@@ -24,6 +24,14 @@ export function ListviewItemsModule() {
                 }
             });
 
+            // Listen for the change event to remove lazy load on next slide
+            flickityGallery.on('change.flickity', function(event, index) {
+                let nextSlide = $(this).find('.flickity-slider .slide').eq(index + 1);
+                if (nextSlide.length > 0 && nextSlide.find('img')) {
+                    nextSlide.find('img').removeAttr('loading');
+                }
+            });
+
             listviewItemsFlickityGalleries.push(flickityGallery);
         });
     }

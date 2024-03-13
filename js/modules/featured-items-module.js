@@ -24,6 +24,14 @@ export function FeaturedItemsModule() {
                 }
             });
 
+            // Listen for the change event to remove lazy load on next slide
+            featuredItemsFlickityGalleryInstance.on('change.flickity', function(event, index) {
+                let nextSlide = $(this).find('.flickity-slider .slide').eq(index + 1);
+                if (nextSlide.length > 0 && nextSlide.find('img')) {
+                    nextSlide.find('img').removeAttr('loading');
+                }
+            });
+
             featuredItemsFlickityGalleries.push(featuredItemsFlickityGalleryInstance);
         });
 
@@ -36,11 +44,11 @@ export function FeaturedItemsModule() {
                     $(element).hide().removeClass('desktop-hidden').fadeIn();
                 }
             });
-    
+
             if (featuredItemsHidden.length < 7) {
                 showMoreFeaturedItemsBtn.remove();
             }
-    
+
             featuredItemsFlickityGalleries.forEach(function(flickityGallery) {
                 flickityGallery.flickity('resize');
             });

@@ -138,10 +138,11 @@ article.pdp {
                     text-align: center;
 
                     img {
-                        max-width: 100%;
-                        max-height: 100%;
+                        width: 100%;
+                        height: 100%;
                         display: block;
                         margin: 0 auto;
+                        object-fit: contain;
                     }
                 }
             }
@@ -173,6 +174,14 @@ article.pdp {
             width: 100%;
             min-width: 0;
 
+            @media @lgDeviceAndUp {
+                width: 750px;
+            }
+
+            @media @mdDevice {
+                width: 560px;
+            }
+
             @media @XSSM {
                 display: flex;
                 flex-direction: column;
@@ -188,7 +197,7 @@ article.pdp {
                 overflow: hidden;
                 -webkit-mask-image: -webkit-radial-gradient(white, black); // iOS fix for show border-radius while swipping
                 order: 1;
-
+                
                 @media @mdDevice {
                     height: 340px;
                 }
@@ -232,12 +241,30 @@ article.pdp {
                     height: 100%;
                     background: @liteGray;
 
+                    &::after {
+                        .fullAbsolute;
+                        content: "";
+                        pointer-events: none;
+                        z-index: 100;
+                        background: linear-gradient(-90deg, rgba(0, 0, 0, 0.2) 30%, rgba(188, 188, 188, 0.3), rgba(0, 0, 0, 0.2) 70%);
+                        background-size: 300%;
+                        background-position-x: 100%;
+                        animation: shimmer 1.3s infinite ease-in-out;
+                    }
+
+                    &.ready {
+                        &::after {
+                            animation: fadeOut 0.5s forwards;
+                        }
+                    }
+
                     .slide {
                         width: 100%;
                         height: 100%;
                         display: block;
                         position: relative;
                         cursor: pointer;
+                        background: @dark;
 
                         &::after {
                             .fullAbsolute;
@@ -266,12 +293,16 @@ article.pdp {
             }
 
             .main-gallery-thumbs-wrapper {
-                width: 100%;
+                width: 750px;
                 background: @dark;
                 padding: 4px;
                 border-radius: @bigBorderRadius;
                 border-top-left-radius: 0;
                 border-top-right-radius: 0;
+
+                @media @mdDevice {
+                    width: 560px;
+                }
 
                 @media @XSSM {
                     display: none;
@@ -287,6 +318,12 @@ article.pdp {
 
                     .thumbs {
                         height: 100%;
+                        display: flex;
+                        justify-content: center;
+
+                        &.ready {
+                            display: block;
+                        }
 
                         .thumb {
                             width: 79px;
