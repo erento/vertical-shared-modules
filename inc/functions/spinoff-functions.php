@@ -319,45 +319,63 @@
         return $html;
     }
 
-    function buildPdpFlickityGallery($images, $image_presets, $name, $allLazyLoded = false) {
+    function buildPdpFlickityHtml($key, $image_src, $selected_image_presets, $name, $conter, $allLazyLoded = false) {
+        $smallest_src = getSmallestSrc($selected_image_presets['srcset'], $image_src);
+        $srcset_string = getSrcsetString($selected_image_presets['srcset'], $image_src);
+
+        $html = '<div class="slide" data-id="' . $key . '">';
+            $html .= '<img ';
+                if ($conter == 0 && $allLazyLoded === false) {
+                    $html .= 'itemprop="image" ';
+                    $html .= 'src="' . $smallest_src . '" ';
+                    $html .= 'srcset="' . $srcset_string . '" ';
+                } else {
+                    // $html .= 'loading="lazy" ';
+                    $html .= 'data-flickity-lazyload="' . $smallest_src . '" ';
+                    $html .= 'data-flickity-lazyload-srcset="' . $srcset_string . '" ';
+                }
+                $html .= 'sizes="' . $selected_image_presets['sizes'] . '" ';
+                $html .= 'alt="' . $name . '"';
+            $html .= '>';
+        $html .= '</div>';
+
+        return $html;
+    }
+
+    function buildPdpFlickityGallery($images, $image_presets, $name) {
         $returnObject = [
-            'html' => '<div class="no-photo-slide">' . _t('No photo', true) . '</div>',
-            'images_thumbs' => [],
+            'main_gallery_html' => '<div class="no-photo-slide">' . _t('No photo', true) . '</div>',
+            'fullscreen_gallery_html' => '<div class="no-photo-slide">' . _t('No photo', true) . '</div>',
+            'thumbs_html' => false,
             'email_img_src' => false
         ];
 
         if ($images) {
-            $html = '';
-            $images_thumbs = [];
+            $htmlMainGallery = '';
+            $htmlFullscreenGallery = '';
+            $htmlThumbs = '';
             $conter = 0;
 
             foreach ($images as $key => $image) {
                 $image_src = getStaticSrc($image->src);
-                array_push($images_thumbs, $image_src);
-                $smallest_src = getSmallestSrc($image_presets['srcset'], $image_src);
-                $srcset_string = getSrcsetString($image_presets['srcset'], $image_src);
+                if ($conter == 0) $returnObject['email_img_src'] = getEmailImgSrc($image_src);
 
-                $html .= '<div class="slide" data-id="' . $key . '">';
-                    $html .= '<img ';
-                        if ($conter == 0 && $allLazyLoded === false) {
-                            $returnObject['email_img_src'] = getEmailImgSrc($image_src);
-                            $html .= 'itemprop="image" ';
-                            $html .= 'src="' . $smallest_src . '" ';
-                            $html .= 'srcset="' . $srcset_string . '" ';
-                        } else {
-                            $html .= 'loading="lazy" ';
-                            $html .= 'data-flickity-lazyload="' . $smallest_src . '" ';
-                            $html .= 'data-flickity-lazyload-srcset="' . $srcset_string . '" ';
-                        }
-                        $html .= 'sizes="' . $image_presets['sizes'] . '" ';
-                        $html .= 'alt="' . $name . '"';
-                    $html .= '>';
-                $html .= '</div>';
+                // build main & fullscreen gallery
+                $htmlMainGallery .= buildPdpFlickityHtml($key, $image_src, $image_presets['main_gallery'], $name, $conter, false);
+                $htmlFullscreenGallery .= buildPdpFlickityHtml($key, $image_src, $image_presets['fullscreen_gallery'], $name, $conter, true);
+
+                // build thumbs
+                $thumb_src = getSmallestSrc($image_presets['thumbnail']['srcset'], $image_src);
+                $thumb_srcset = getSrcsetString($image_presets['thumbnail']['srcset'], $image_src);
+                $htmlThumbs .= '<div class="thumb" >';
+                    $htmlThumbs .= '<img loading="lazy" width="79" height="56" src="' . $thumb_src . '" srcset="' . $thumb_srcset . '" alt="' . $name . '">';
+                $htmlThumbs .= '</div>';
                 $conter++;
             }
 
-            $returnObject['html'] = $html;
-            $returnObject['images_thumbs'] = $images_thumbs;
+            $returnObject['main_gallery_html'] = $htmlMainGallery;
+            $returnObject['fullscreen_gallery_html'] = $htmlFullscreenGallery;
+            $returnObject['thumbs_html'] = $htmlThumbs;
         }
 
         return $returnObject;

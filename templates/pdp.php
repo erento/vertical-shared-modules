@@ -85,8 +85,7 @@
         ]
     ];
 
-    $flickityGallery = buildPdpFlickityGallery($images, $image_presets['main_gallery'], $name);
-    $fullscreenFlickityGallery = buildPdpFlickityGallery($images, $image_presets['fullscreen_gallery'], $name, true);
+    $pdpFlickityGalleries = buildPdpFlickityGallery($images, $image_presets, $name);
 
     // pre_dump($itemData);
 
@@ -126,7 +125,7 @@
 
             <div class="fullscreen-gallery-slides-wrapper">
                 <div class="fullscreen-gallery-slides">
-                    <?=$fullscreenFlickityGallery['html']?>
+                    <?=$pdpFlickityGalleries['fullscreen_gallery_html']?>
                 </div>
             </div>
         </div>
@@ -160,23 +159,17 @@
                             </div>
                         <?php endif ?>
                         <div class="gallery">
-                            <?=$flickityGallery['html']?>
+                            <?=$pdpFlickityGalleries['main_gallery_html']?>
                         </div>
                     </div>
 
                     <?php
-                        $images_thumbs = $flickityGallery['images_thumbs'];
-                        if (sizeof($images_thumbs) > 0) {
+                        $thumbs_html = $pdpFlickityGalleries['thumbs_html'];
+                        if ($thumbs_html) {
                             echo '<div class="main-gallery-thumbs-wrapper">';
                                 echo '<div class="thumbs-inner">';
                                     echo '<div class="thumbs">';
-                                    foreach ($images_thumbs as $key => $src) {
-                                        $thumb_src = getSmallestSrc($image_presets['thumbnail']['srcset'], $src);
-                                        $thumb_srcset = getSrcsetString($image_presets['thumbnail']['srcset'], $src);
-                                        echo '<div class="thumb" >';
-                                            echo '<img loading="lazy" width="79" height="56" src="' . $thumb_src . '" srcset="' . $thumb_srcset . '" alt="' . $name . '">';
-                                        echo '</div>';
-                                    }
+                                        echo $thumbs_html;
                                     echo '</div>';
                                 echo '</div>';
                             echo '</div>';

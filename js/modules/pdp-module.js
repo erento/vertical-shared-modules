@@ -307,7 +307,6 @@ export function PdpModule(
         }
 
         fullscreen_gallery_flkty = $('.fullscreen-gallery-slides').flickity(fullscreen_gallery_flkty_options);
-        console.log('flickity built');
     }
 
     function updateFullscreengalleryIndex(index) {
