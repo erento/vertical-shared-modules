@@ -295,6 +295,8 @@ export function PdpModule(
             prevNextButtons: true,
             wrapAround: false,
             setGallerySize: false,
+            selectedAttraction: 0.2,
+            friction: 0.8,
             on: {
                 change: function( index ) {
                     updateFullscreengalleryIndex(index);
