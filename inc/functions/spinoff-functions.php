@@ -325,12 +325,11 @@
 
         $html = '<div class="slide" data-id="' . $key . '">';
             $html .= '<img ';
-                if ($conter == 0 && $allLazyLoded === false) {
+                if ($conter === 0 && $allLazyLoded === false) {
                     $html .= 'itemprop="image" ';
                     $html .= 'src="' . $smallest_src . '" ';
                     $html .= 'srcset="' . $srcset_string . '" ';
                 } else {
-                    // $html .= 'loading="lazy" ';
                     $html .= 'data-flickity-lazyload="' . $smallest_src . '" ';
                     $html .= 'data-flickity-lazyload-srcset="' . $srcset_string . '" ';
                 }
@@ -343,9 +342,10 @@
     }
 
     function buildPdpFlickityGallery($images, $image_presets, $name) {
+        $noPhotoHtml = '<div class="no-photo-slide">' . _t('No photo', true) . '</div>';
         $returnObject = [
-            'main_gallery_html' => '<div class="no-photo-slide">' . _t('No photo', true) . '</div>',
-            'fullscreen_gallery_html' => '<div class="no-photo-slide">' . _t('No photo', true) . '</div>',
+            'main_gallery_html' => $noPhotoHtml,
+            'fullscreen_gallery_html' => $noPhotoHtml,
             'thumbs_html' => false,
             'email_img_src' => false
         ];
@@ -358,7 +358,7 @@
 
             foreach ($images as $key => $image) {
                 $image_src = getStaticSrc($image->src);
-                if ($conter == 0) $returnObject['email_img_src'] = getEmailImgSrc($image_src);
+                if ($conter === 0) $returnObject['email_img_src'] = getEmailImgSrc($image_src);
 
                 // build main & fullscreen gallery
                 $htmlMainGallery .= buildPdpFlickityHtml($key, $image_src, $image_presets['main_gallery'], $name, $conter, false);
