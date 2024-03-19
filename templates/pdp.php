@@ -365,7 +365,7 @@
                                 'seller_id'     => $seller_id,
                                 'seller_phone'  => $phone_numbers,
                                 'last_link'     => $last_link,
-                                'item_image'    => $flickityGallery['email_img_src'],
+                                'item_image'    => $pdpFlickityGalleries['email_img_src'],
                             ));
                         ?>
                     </div>

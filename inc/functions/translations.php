@@ -125,7 +125,8 @@
         'Similar items nearby' => 'Ähnliche Artikel in der Nähe',
         'EMAIL_SELLER_INTRO_END' => 'Hier ist Ihre erste Anfrage!',
         'BOT_SPAM_ERROR' => 'Etwas ist schief gelaufen.',
-        'TOP_POSITION_BADGE' => 'Top'
+        'TOP_POSITION_BADGE' => 'Top',
+        "RECEIVED_NEW_ENQUIRY" => "Sie haben eine neue Anfrage zu Ihrem Mietangebot über %s% erhalten."
     ];
 
     $allTranslations = array_merge($sharedTranslations, $spinoffTranslations);

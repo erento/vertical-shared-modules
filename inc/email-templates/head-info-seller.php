@@ -22,5 +22,5 @@
     </td>
 </tr>
 <tr>
-    <td class="email-padding __pt10"><?=_t("You've received a new enquiry regarding your rental item on")?> <a href="<?=$enqFormData['itemUrl']?>"><?=getDomainName();?></a></td>
+    <td class="email-padding __pt10"><?=_t("RECEIVED_NEW_ENQUIRY", false, '<a href="' . get_home_url() . '">' . getDomainName() . '</a>')?></td>
 </tr>
