@@ -47,9 +47,9 @@
                 $type = 'POST';
             }
 
-            // filter out async_litespeed error logs
+            // filter out specific error logs
             if (is_array($_REQUEST)) {
-                if (array_key_exists('action', $_REQUEST) && $_REQUEST['action'] === 'async_litespeed') {
+                if (array_key_exists('action', $_REQUEST) && in_array($_REQUEST['action'], ['async_litespeed', 'heartbeat'])) {
                     return;
                 }
             }

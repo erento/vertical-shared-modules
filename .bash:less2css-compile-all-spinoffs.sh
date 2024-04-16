@@ -4,7 +4,7 @@
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd -P)"
 
 # Array of spinoff directories
-SPINOFF_DIR_NAMES=("mietedeinsportauto" "mietedeinelimo" "mietedeinezelte" "mietedeinenoldtimer")
+SPINOFF_DIR_NAMES=("mietedeinsportauto" "mietedeinelimo" "mietedeinezelte" "mietedeinenoldtimer" "mietedeineventmodul")
 
 # Function to compile less to css
 compile_less_to_css() {

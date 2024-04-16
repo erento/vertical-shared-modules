@@ -811,7 +811,7 @@
         if (ENV == 'PROD') {
             $seller_email = $enqFormData['sellerEmail'];
         }
-        if (ENV == 'DEV') {
+        if (ENV == 'DEV' || ENV == 'BETA') {
             $seller_email = 'erentoseller@gmail.com'; // HARDCODED
         }
 

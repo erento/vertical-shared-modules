@@ -4,7 +4,7 @@
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd -P)"
 
 # Array of spinoff directories
-SPINOFF_DIR_NAMES=("mietedeinsportauto" "mietedeinelimo" "mietedeinezelte" "mietedeinenoldtimer")
+SPINOFF_DIR_NAMES=("mietedeinsportauto" "mietedeinelimo" "mietedeinezelte" "mietedeinenoldtimer" "mietedeineventmodul")
 
 compile_scripts_with_webpack() {
     local spinoff_dir="$1"
