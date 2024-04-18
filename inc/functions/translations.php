@@ -126,7 +126,14 @@
         'EMAIL_SELLER_INTRO_END' => 'Hier ist Ihre erste Anfrage!',
         'BOT_SPAM_ERROR' => 'Etwas ist schief gelaufen.',
         'TOP_POSITION_BADGE' => 'Top',
-        "RECEIVED_NEW_ENQUIRY" => "Sie haben eine neue Anfrage zu Ihrem Mietangebot über %s% erhalten."
+        "RECEIVED_NEW_ENQUIRY" => "Sie haben eine neue Anfrage zu Ihrem Mietangebot über %s% erhalten.",
+        'ESERP_REVIEWS_TEXT' => '<strong>Exzellent</strong> basierend auf <strong>1.400+</strong> Bewertungen',
+        'ESERP_USP_1' => 'Europas Mietportal #1',
+        'ESERP_USP_2' => 'Über 20 Jahre Erfahrung',
+        'ESERP_USP_3' => '100% geprüfte Vermieter',
+        'ESERP_FEATURED_ITEMS_HEADLINE' => 'Unsere beliebtesten Angebote <br> in der Kategorie %s%',
+        'ESERP_FAQ_HEADLINE' => 'Häufige Fragen und Antworten zum Thema %s% mieten',
+        'ESERP_BLOG_HEADLINE' => 'Entdecke mehr in der Kategorie %s%'
     ];
 
     $allTranslations = array_merge($sharedTranslations, $spinoffTranslations);

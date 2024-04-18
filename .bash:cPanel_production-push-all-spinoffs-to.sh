@@ -1,6 +1,6 @@
 #!/bin/bash
 
-projects=("vertical-shared-modules" "mietedeinsportauto" "mietedeinelimo" "mietedeinezelte" "mietedeinenoldtimer")
+projects=("vertical-shared-modules" "mietedeinsportauto" "mietedeinelimo" "mietedeinezelte" "mietedeinenoldtimer" "mietedeineventmodul")
 
 for project in "${projects[@]}"
 do
