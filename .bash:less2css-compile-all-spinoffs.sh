@@ -31,3 +31,5 @@ for spinoff in "${SPINOFF_DIR_NAMES[@]}"; do
         echo "Error: Spinoff directory not found: $spinoff_path"
     fi
 done
+
+read -p "Press Enter to exit..."
