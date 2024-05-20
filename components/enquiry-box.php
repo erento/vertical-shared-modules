@@ -181,7 +181,7 @@
 
         <?php
             if (key_exists('link', $last_link)) {
-                echo '<a href="' . $last_link['link'] . '" class="explore-more-btn btn loading-dots __arrow __solid __dark __bold"><span>' . _t('EXPLORE_MORE_AFTER_ENQ', true) . '</span></a>';
+                echo '<a href="' . $last_link['link'] . '" class="explore-more-btn btn loading-dots __arrow __solid __color __bold"><span>' . _t('EXPLORE_MORE_AFTER_ENQ', true) . '</span></a>';
             }
         ?>
     </div>

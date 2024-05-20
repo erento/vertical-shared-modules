@@ -14,6 +14,9 @@ switch (SPINOFFID) {
     case 'oldtimer':
         $btnColor = '#9A2332';
         break;
+    case 'eventmodul':
+        $btnColor = '#5337AA';
+        break;
     default:
         $btnColor = '#111';
 }
