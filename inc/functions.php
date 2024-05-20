@@ -75,7 +75,7 @@
     function createResponsivePicture(
         $imgId,
         $srcSet = [],
-        $sizes,
+        $sizes = '',
         $classes = false,
         $alt = false,
         $loading = false,
