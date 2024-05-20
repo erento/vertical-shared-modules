@@ -1,6 +1,4 @@
 <?php
-    /* Template Name: Contact Us Template */
-    
     $meta_data = get_field('meta_data');
     if ($meta_data['title'] == '') $meta_data['title'] = get_the_title();
     if ($meta_data['description'] == '') $meta_data['description'] = get_the_excerpt();

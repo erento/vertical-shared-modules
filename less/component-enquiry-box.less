@@ -418,19 +418,15 @@ enquiry-box-component {
 
     .send-enquiry-btn {
         width: 100%;
+        background: @pdpSubmitEnqBtnColor;
         color: @white;
         
         @media @XSSM {
             display: none;
         }
 
-        &.purple {
-            .diagonalGradientBgColor(#5F3EE2, #E12872);
-            color: @white;
-
-            &:hover {
-                .diagonalGradientBgColor(#5234ca, #bd0d53) !important;
-            } 
+        &:hover {
+            background: @pdpSubmitEnqBtnHoverColor !important;
         }
     }
 
