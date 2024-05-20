@@ -100,22 +100,14 @@
 }
 
 .verticalGradientBgColor(@param1: #ffffff, @param2:#000000) {
-    background-image: -moz-linear-gradient(top, @param1, @param2);
-    background-image: -ms-linear-gradient(top, @param1, @param2);
-    background-image: -o-linear-gradient(top, @param1, @param2);
     background-image: linear-gradient(to bottom, @param1, @param2);
 }
 
 .horizontalGradientBgColor(@param1: #ffffff, @param2:#000000) {
-    background-image: -moz-linear-gradient(left, @param1, @param2);
-    background-image: -ms-linear-gradient(left, @param1, @param2);
-    background-image: -o-linear-gradient(left, @param1, @param2);
     background-image: linear-gradient(to right, @param1, @param2);
 }
 
 .diagonalGradientBgColor(@param1: #ffffff, @param2:#000000) {
-    background: -moz-linear-gradient(45deg, @param1 0%, @param2 100%);
-    background: -webkit-linear-gradient(45deg, @param1 0%, @param2 100%);
     background: linear-gradient(45deg, @param1 0%, @param2 100%);
 }
 
