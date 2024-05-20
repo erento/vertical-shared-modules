@@ -10,6 +10,7 @@
     elseif (SPINOFFID === 'limo') { $logo = $svgs['logo-limo']; }
     elseif (SPINOFFID === 'zelte') { $logo = $svgs['logo-zelte']; }
     elseif (SPINOFFID === 'oldtimer') { $logo = $svgs['logo-oldtimer']; }
+    elseif (SPINOFFID === 'eventmodul') { $logo = $svgs['logo-eventmodul']; }
     ?>
             </main>
             <footer id="footer" class="footer <?=$class?>" role="contentinfo">

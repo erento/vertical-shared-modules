@@ -388,7 +388,7 @@
 
             <?php
                 $category = false;
-                if (SPINOFFID === 'limo' || SPINOFFID === 'zelte') {
+                if (SPINOFFID === 'limo' || SPINOFFID === 'zelte' || SPINOFFID === 'eventmodul') {
                     $category = getCategorySlugFromApi($itemData);
                 }
 
