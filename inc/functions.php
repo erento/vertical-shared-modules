@@ -32,6 +32,7 @@
     add_filter('jpeg_quality', function() {return '95';});
     add_filter('http_request_host_is_external', '__return_true'); // Allow localhost uploads (media_sideload_image)
     add_filter('wp_sitemaps_enabled', '__return_false'); // disable default WP sitemap
+    add_filter('wpcf7_autop_or_not', '__return_false'); // remove automatically added paragraphs in contact form 7
 
     // Add Menu Support
     add_theme_support('menus');

@@ -112,7 +112,7 @@
                 <input type="text" name="first_lastname" placeholder="<?=_t('Your first & last name')?> *">
                 <div class="ss-error ss-error-first_lastname"></div>
             </div>
-            <?php if (SPINOFFID !== 'zelte'): ?>
+            <?php if (SPINOFFID !== 'zelte' && SPINOFFID !== 'eventmodul'): ?>
                 <div class="input-container">
                     <label><?=_t('Age')?></label>
                     <input type="text" name="age" placeholder="<?=_t('Your age')?>"
