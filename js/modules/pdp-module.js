@@ -95,6 +95,7 @@ export function PdpModule(
             $(dropdown).find('.custom-select-option').removeClass('selected');
             event.target.classList.add('selected');
             $(dropdown).parents('.dh-item').find('.dh-item-value').attr('value', selectedHour);
+            $(dropdown).parents('.dh-item').find('.dh-item-native').attr('value', selectedHour + ':00')
 
             if ($(dropdown).parents('.dh-item.pickup-hour').length) updateDeliveryHourDropdown();
         }
@@ -402,6 +403,9 @@ export function PdpModule(
             deliveryDatepicker.datepicker('option', 'minDate', selectedDate);
             updateDeliveryHourDropdown();
             openDeliveryDatepicker = true;
+
+            var nativeFormattedPickupDate = formatDateForNative(pickupDatepicker.datepicker('getDate'));
+            $("input[name='pickup_date']").val(nativeFormattedPickupDate);
         },
         onClose: function() {
             $('.dh-item-value.js-datepicker-pickup').removeClass('datepicker-opened');
@@ -422,14 +426,17 @@ export function PdpModule(
         },
         onSelect: function() {
             updateDeliveryHourDropdown();
+
+            var nativeFormattedDeliveryDate = formatDateForNative(deliveryDatepicker.datepicker('getDate'));
+            $("input[name='delivery_date']").val(nativeFormattedDeliveryDate);
         },
         onClose: function() {
             $('.dh-item-value.js-datepicker-delivery').removeClass('datepicker-opened');
         }
     }
 
-    var deliveryDatepicker = $('.sidebar .js-datepicker-delivery').datepicker(Object.assign(datepickersOptions, datepickerDeliveryFunctions));
     var pickupDatepicker = $('.sidebar .js-datepicker-pickup').datepicker(Object.assign(datepickersOptions, datepickerPickupFunctions));
+    var deliveryDatepicker = $('.sidebar .js-datepicker-delivery').datepicker(Object.assign(datepickersOptions, datepickerDeliveryFunctions));
 
     $('.open-mobile-enquiry').click(function(){
         openMobileEnquiry();

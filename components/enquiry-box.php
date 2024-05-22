@@ -36,11 +36,11 @@
                     <div class="date-hour-wrapper">
                         <div class="dh-item date pickup-date">
                             <input type="date" name="pickup_date" min="<?=$tomorrow_native?>" max="<?=$next_year_native?>" value="<?=$tomorrow_native?>">
-                            <input class="dh-item-value date js-datepicker js-datepicker-pickup" value="<?=$tomorrow_formatted?>" readonly="readonly" autocomplete="off">
+                            <input type="text" class="dh-item-value date js-datepicker js-datepicker-pickup" value="<?=$tomorrow_formatted?>" readonly="readonly" autocomplete="off">
                         </div>
                         <div class="dh-item hour pickup-hour">
-                            <input class="dh-item-native" type="time" name="pickup_hour" value="<?=str_pad($pickup_hour, 2, '0', STR_PAD_LEFT)?>:00:00" step="1800">
-                            <input class="dh-item-value hour dh-item-value-pickup" value="<?=str_pad($pickup_hour, 2, '0', STR_PAD_LEFT)?>:00" readonly="readonly">
+                            <input type="time" class="dh-item-native" name="pickup_hour" value="<?=str_pad($pickup_hour, 2, '0', STR_PAD_LEFT)?>:00:00" step="1800">
+                            <input type="text" class="dh-item-value hour dh-item-value-pickup" value="<?=str_pad($pickup_hour, 2, '0', STR_PAD_LEFT)?>:00" readonly="readonly">
 
                             <div class="custom-select-wrapper">
                                 <div class="custom-select">
@@ -63,12 +63,12 @@
                     </div>
                     <div class="date-hour-wrapper">
                         <div class="dh-item date delivery-date">
-                            <input class="dh-item-native" type="date" name="delivery_date" min="<?=$tomorrow_native?>" max="<?=$next_year_native?>" value="<?=$after_tomorrow_native?>">
-                            <input class="dh-item-value date js-datepicker js-datepicker-delivery" value="<?=$after_tomorrow_formatted?>" readonly="readonly" autocomplete="off">
+                            <input type="date" class="dh-item-native" name="delivery_date" min="<?=$tomorrow_native?>" max="<?=$next_year_native?>" value="<?=$after_tomorrow_native?>">
+                            <input type="text" class="dh-item-value date js-datepicker js-datepicker-delivery" value="<?=$after_tomorrow_formatted?>" readonly="readonly" autocomplete="off">
                         </div>
                         <div class="dh-item hour delivery-hour">
-                            <input type="time" name="delivery_hour" value="<?=str_pad($delivery_hour, 2, '0', STR_PAD_LEFT)?>:00:00" step="1800">
-                            <input class="dh-item-value hour dh-item-value-delivery" value="<?=str_pad($delivery_hour, 2, '0', STR_PAD_LEFT)?>:00" readonly="readonly">
+                            <input type="time" class="dh-item-native" name="delivery_hour" value="<?=str_pad($delivery_hour, 2, '0', STR_PAD_LEFT)?>:00:00" step="1800">
+                            <input type="text" class="dh-item-value hour dh-item-value-delivery" value="<?=str_pad($delivery_hour, 2, '0', STR_PAD_LEFT)?>:00" readonly="readonly">
 
                             <div class="custom-select-wrapper">
                                 <div class="custom-select">
