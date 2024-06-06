@@ -7,10 +7,7 @@
 
     // Add prefix to "/static" URLs
     function getStaticSrc($src) {
-        $src = str_replace('static/image-products/', 'img/', $src); // HARDCODED
-        $modified_src = pathinfo($src, PATHINFO_DIRNAME) . '/' . pathinfo($src, PATHINFO_FILENAME) . '_original.' . pathinfo($src, PATHINFO_EXTENSION); // TEMPORARY HARDCODED
-
-        return "https://www.eren.to" . $modified_src; // HARDCODED
+        return "https://www.eren.to" . str_replace('static/image-products/', 'img/', $src); // HARDCODED
     }
 
     function getCurrentUrl() {
@@ -127,38 +124,38 @@
 
         return $sitemap_urls_array;
     }
-    
+
     function fetchHtmlSitemap() {
         if (SPINOFFID === 'oldtimer') {
             $url = getHtmlSitemapUrl();
             $sitemap_fetch = @file_get_contents($url);
             if (!$sitemap_fetch) return false;
             $sitemap_fetch = json_decode($sitemap_fetch);
-    
+
             return $sitemap_fetch->cities;
         } else {
             $sitemap_array = [];
             $urls = getHtmlSitemapUrls();
-    
+
             foreach ($urls as $key => $url_array) {
                 $sitemap_fetch = @file_get_contents($url_array['api_url']);
                 if ($sitemap_fetch) {
                     $sitemap_fetch = json_decode($sitemap_fetch);
-    
+
                     foreach ($sitemap_fetch->cities as $character => $cities_array) {
                         if (empty($sitemap_array[$character])) $sitemap_array[$character] = [];
-    
+
                         foreach ($cities_array as $key => $city_name) {
                             $city_slug = slugify($city_name);
                             $city_url = getMietenCategoryLocationSerpPermalink($url_array['slug'], $city_slug);
                             $city_url = '<a href="' . $city_url . '" target="_blank">' . $url_array['title'] . $city_name . '</a>';
-    
+
                             array_push($sitemap_array[$character], $city_url);
                         }
                     }
                 }
             }
-    
+
             return $sitemap_array;
         }
     }
@@ -472,7 +469,7 @@
     // Only for SPORTAUTO spinoff
     function resolveSerpLocation($ctx) {
         $location_name = resolveSerpLocationFromApi($ctx);
-        
+
         if ($location_name === false) {
             apply_filters('removeLocationForTaxonomyPath', false);
         } else {
@@ -490,7 +487,7 @@
             apply_filters('setFormattedAddress', $formatted_address);
 
             foreach ($address_component as $key => $value) {
-                
+
                 if (array_key_exists('types', $value)){
                     $types = $value['types'];
 
